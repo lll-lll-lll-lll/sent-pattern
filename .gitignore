@@ -1,0 +1,8 @@
+__pycache__/
+.vscode/
+.venv/
+build/
+sent_pattern.egg-info/
+dist/
+.pytest_cache/
+.pypirc
