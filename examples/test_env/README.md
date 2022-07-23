@@ -1,6 +1,13 @@
+# Test Env
+environment to try sent-pattern immediately
+
+### Makefile
+create .venv environment and install from requirements-dev.txt
 ```bash
-$ python -m venv .venv
-$ . .venv/bin/activate
-$ pip install -r requirements.txt
-$ python -m spacy download en_core_web_sm
+make setup
+```
+
+delete test env
+```bash
+make clean
 ```
