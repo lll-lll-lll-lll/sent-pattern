@@ -52,6 +52,8 @@ print(pattern.subject.root.text)
 # he (string)
 print(dep_list)
 # {'ROOT': [gives], 'dative': [me], 'dobj': [something], 'nsubj': [he]}
+print(pattern.abbreviation)
+# "SVOO"
 ```
 
 
