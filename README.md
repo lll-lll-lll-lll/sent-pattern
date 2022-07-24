@@ -1,7 +1,6 @@
 ## Sent Pattern
-this is open source project that returns which sentence type the input sentence is. returns which is the subject, verb, object, and adjective so on.
-The reason for English interpretation is to develop the ability to read English sentences correctly.
-
+This package categorizes English sentences into one of five basic sentence patterns and identifies the subject, verb, object, and other components. The five basic sentence patterns are based on C. T. Onions's Advanced English Syntax and are frequently used when teaching English in Japan.
+[Influence of His Grammar on English Language Education in Japan ](https://www.intcul.tohoku.ac.jp/ronshu/vol17/12.pdf)
 
 ## Quick Start
 
