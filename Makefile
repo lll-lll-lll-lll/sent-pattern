@@ -8,4 +8,4 @@ clean:
 	rm -rf .venv
 pytest:
 	. .venv/bin/activate
-	python -m pytest -s
+	python -m pytest --capture=no
