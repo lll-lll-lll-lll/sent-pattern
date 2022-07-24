@@ -6,3 +6,4 @@ sent_pattern.egg-info/
 dist/
 .pytest_cache/
 .pypirc
+test-pipy-command.txt
