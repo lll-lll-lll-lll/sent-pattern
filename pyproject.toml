@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "sent-pattern"
+version = "0.1.0"
+description = ""
+authors = ["Shunpei Nakayama <hoku804049@gmail.com>"]
+license = "MIT"
+readme="README.md"
+repository="https://github.com/lll-lll-lll-lll/sent-pattern"
+keywords=["nlp", "spacy"]
+classifiers = [
+'Programming Language :: Python :: 3',
+'License :: OSI Approved :: MIT License'
+]
+
+[tool.poetry.plugins."spacy_factories"]
+"sent_pattern" = "sent_pattern.pipelines.sent_pattern:create_sentence_pattern"
+"span_noun" = "sent_pattern.pipelines.span_noun:create_span_noun"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+spacy = "^3.4.0"
+
+[tool.poetry.dependencies.en_core_web_md]
+url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.4.0/en_core_web_md-3.4.0.tar.gz"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+attr = "^0.3.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
