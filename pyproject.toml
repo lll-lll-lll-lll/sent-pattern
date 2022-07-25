@@ -12,6 +12,10 @@ classifiers = [
 'License :: OSI Approved :: MIT License'
 ]
 
+
+[tool.poetry.dependencies.en_core_web_md]
+url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.4.0/en_core_web_md-3.4.0.tar.gz"
+
 [tool.poetry.plugins."spacy_factories"]
 "sent_pattern" = "sent_pattern.pipelines.sent_pattern:create_sentence_pattern"
 "span_noun" = "sent_pattern.pipelines.span_noun:create_span_noun"
@@ -19,13 +23,12 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.9"
 spacy = "^3.4.0"
-
-[tool.poetry.dependencies.en_core_web_md]
-url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.4.0/en_core_web_md-3.4.0.tar.gz"
+attr = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
 attr = "^0.3.2"
+twine = "^4.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
