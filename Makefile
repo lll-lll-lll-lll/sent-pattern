@@ -1,6 +1,6 @@
 .PHONY: setup
 setup:
-	poetry install
+	poetry install --no-dev
 clean:
 	rm -rf __pycache__
 	rm -rf .pytest_cache
