@@ -1,7 +1,7 @@
 import spacy
 from sent_pattern import tags
 
-nlp = spacy.load("en_core_web_lg")
+nlp = spacy.load("en_core_web_md")
 nlp.add_pipe("span_noun")
 nlp.add_pipe("sent_pattern")
 
