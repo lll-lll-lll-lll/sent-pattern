@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractclassmethod, abstractmethod
-from .Ielements import SubjectInterface, VerbInterface, AdjectiveInterface, ObjectInterface, RootElementsInterface
+from .Ielements import SubjectInterface, VerbInterface, AdjectiveInterface, ObjectInterface, ElementsFactoryInterface
 
 
 class BaseSentencePatternInterface(metaclass=ABCMeta):
@@ -134,7 +134,7 @@ class FifthSentencePatternInterface(BaseSentencePatternInterface):
 
 
 class PatternFactoryInterface(metaclass=ABCMeta):
-    elements: RootElementsInterface
+    elements: ElementsFactoryInterface
 
     @property
     @abstractclassmethod

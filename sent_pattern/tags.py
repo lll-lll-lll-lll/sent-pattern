@@ -2,8 +2,8 @@ from collections import defaultdict
 from spacy.tokens import Doc
 from spacy.tokens import Token
 from typing import List, Dict, Optional
-from sent_pattern.core.elements.rootelements import RootElements
-from sent_pattern.core.interface.Ielements import RootElementsInterface
+from sent_pattern.core.elementsfactory import ElementsFactory
+from sent_pattern.core.interface.Ielements import ElementsFactoryInterface, ElementsInterface
 from sent_pattern.core.interface.Ipattern import BaseSentencePatternInterface
 from sent_pattern.core.patternfactory import PatternFactory
 
@@ -44,7 +44,7 @@ def create_lemma_list(doc: Doc) -> Dict[str, List[Optional[Token]]]:
     return dict(lemma_list)
 
 
-def create_elements(dep_list: Dict[str, List[Optional[Token]]], lemma_list: Dict[str, List[Optional[Token]]]) -> RootElementsInterface:
+def create_elements(dep_list: Dict[str, List[Optional[Token]]], lemma_list: Dict[str, List[Optional[Token]]]) -> ElementsFactoryInterface:
     """
     Parameters
     ----------
@@ -59,12 +59,12 @@ def create_elements(dep_list: Dict[str, List[Optional[Token]]], lemma_list: Dict
     elements: ElementsInterface
         classes have subject, verb, adjective, and object
     """
-    elements = RootElements.make_self(
+    elements = ElementsFactory.make_root_elements(
         dep_list=dep_list, lemma_list=lemma_list)
     return elements
 
 
-def create_sent_pattern(elements: RootElementsInterface) -> BaseSentencePatternInterface:
+def create_sent_pattern(elements: ElementsInterface) -> BaseSentencePatternInterface:
     """
     Parameters
     ----------
