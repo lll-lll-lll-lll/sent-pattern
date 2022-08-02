@@ -1,10 +1,10 @@
 from .interface.Ipattern import BaseSentencePatternInterface, PatternFactoryInterface
-from .interface.Ielements import RootElementsInterface
+from .interface.Ielements import  ElementsInterface
 from .elements.patterns import FirstSentencePattern, SecondSentencePattern, ThirdSentencePattern, FourthSentencePattern, FifthSentencePattern
 
 
 class PatternFactory(PatternFactoryInterface):
-    def __init__(self, elements: RootElementsInterface):
+    def __init__(self, elements: ElementsInterface):
         self.elements = elements
 
     @property
