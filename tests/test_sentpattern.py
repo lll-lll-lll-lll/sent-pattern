@@ -12,3 +12,4 @@ def test_sent_pattern():
     pattern = doc._.sentpattern
     assert pattern.__class__.__name__ == "FourthSentencePattern"
     assert pattern.subject.root.text == "I"
+    assert pattern.abbreviation == "SVOO"
