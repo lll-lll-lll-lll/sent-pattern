@@ -31,13 +31,15 @@ print(pattern.verb.root)
 # give (Token)
 ```
 
+
+
 #### If you want to know the sentence pattern without using components, we recommend using method directly
 
 ```py
 import spacy
 from sent_pattern import tags
 
-nlp = spacy.load("en_core_web_lg")
+nlp = spacy.load("en_core_web_md")
 text = "he gives me something"
 doc = nlp(text)
 
@@ -53,6 +55,23 @@ print(dep_list)
 # {'ROOT': [gives], 'dative': [me], 'dobj': [something], 'nsubj': [he]}
 print(pattern.abbreviation)
 # "SVOO"
+
+
+```
+
+how to get prep phrase
+```py
+nlp = spacy.load("en_core_web_md")
+
+text = "The Eureka client handles all aspects of service instance registration and deregistration"
+doc =  nlp(text)
+dep_list = tags.create_dep_list(doc)
+lemma_list = tags.create_lemma_list(doc)
+custom = ElementsFactory.make_custom_elements(dep_list, lemma_list, doc=doc, option="prep")
+phrase = custom.option
+
+print(phrase.prep_groups)
+# [of service instance registration and deregistration]
 ```
 
 
