@@ -1,7 +1,7 @@
 from spacy.tokens import Doc, Span
 
 
-class Relative():
+class RelativeClause():
     def __init__(self, doc: Doc) -> None:
         self._doc = doc
         self.root = self._get_relative(doc)
