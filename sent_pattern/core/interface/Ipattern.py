@@ -133,7 +133,7 @@ class FifthSentencePatternInterface(BaseSentencePatternInterface):
         return "SVOC"
 
 
-class PatternFactoryInterface(metaclass=ABCMeta):
+class SentencePatternInterface(metaclass=ABCMeta):
     elements: ElementsInterface
 
     @property

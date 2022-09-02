@@ -5,7 +5,7 @@ from typing import List, Dict, Optional
 from sent_pattern.core.elementsfactory import ElementsFactory
 from sent_pattern.core.interface.Ielements import ElementsFactoryInterface, ElementsInterface
 from sent_pattern.core.interface.Ipattern import BaseSentencePatternInterface
-from sent_pattern.core.patternfactory import PatternFactory
+from sent_pattern.core.patternfactory import SentencePattern
 
 
 def create_dep_list(doc: Doc) -> Dict[str, List[Optional[Token]]]:
@@ -75,5 +75,5 @@ def create_sent_pattern(elements: ElementsInterface) -> BaseSentencePatternInter
     -------
     pattern : BaseSentencePatternInterface
     """
-    pattern = PatternFactory(elements)
+    pattern = SentencePattern(elements)
     return pattern.pattern_type

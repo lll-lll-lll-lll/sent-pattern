@@ -1,9 +1,9 @@
-from .interface.Ipattern import BaseSentencePatternInterface, PatternFactoryInterface
+from .interface.Ipattern import BaseSentencePatternInterface, SentencePatternInterface
 from .interface.Ielements import  ElementsInterface
 from .elements.patterns import FirstSentencePattern, SecondSentencePattern, ThirdSentencePattern, FourthSentencePattern, FifthSentencePattern
 
 
-class PatternFactory(PatternFactoryInterface):
+class SentencePattern(SentencePatternInterface):
     def __init__(self, elements: ElementsInterface):
         self.elements = elements
 
