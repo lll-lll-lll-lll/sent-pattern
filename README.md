@@ -78,4 +78,4 @@ print(phrase.prep_groups)
 ### License
 Distributed under the terms of the MIT license, "sent-pattern" is free and open source software
 
-### [Universe Project](https://spacy.io/universe/project/sent-pattern)
+### This Project is Spacy [Universe Project](https://spacy.io/universe/project/sent-pattern)
