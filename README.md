@@ -2,6 +2,7 @@
 This package categorizes English sentences into one of five basic sentence patterns and identifies the subject, verb, object, and other components. The five basic sentence patterns are based on C. T. Onions's Advanced English Syntax and are frequently used when teaching English in Japan.<br>
 [Influence of His Grammar on English Language Education in Japan ](https://www.intcul.tohoku.ac.jp/ronshu/vol17/12.pdf)
 
+#### This Project is Spacy [Universe Project](https://spacy.io/universe/project/sent-pattern)
 ## Quick Start
 
 ### Installation
@@ -78,4 +79,4 @@ print(phrase.prep_groups)
 ### License
 Distributed under the terms of the MIT license, "sent-pattern" is free and open source software
 
-### This Project is Spacy [Universe Project](https://spacy.io/universe/project/sent-pattern)
+
