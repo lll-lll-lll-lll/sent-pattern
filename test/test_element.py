@@ -3,7 +3,9 @@ import spacy
 import sent_pattern
 import pytest
 
-nlp = spacy.load("en_core_web_md")
+from sent_pattern.core.elements.relative import RelativeClause
+
+nlp = spacy.load("en_core_web_lg")
 nlp.add_pipe("span_noun")
 nlp.add_pipe("sent_pattern")
 
@@ -23,6 +25,11 @@ test_data = {
         "proving",
         "began",
         "suggested",
+    ],
+    "adjective":[
+        "be",
+        "produce",
+        "looking"
     ],
     "pattern":[
         "SVC",
@@ -59,3 +66,11 @@ def test_pattern(text:str, pattern:str):
     doc = nlp(text)
     p = doc._.sentpattern
     assert p.abbreviation == pattern
+
+
+pattern_test_data = make_test_data(test_data["texts"], test_data["adjective"])
+@pytest.mark.parametrize(('text', 'adjective'), pattern_test_data)
+def test_pattern(text:str, adjective:str):
+    doc = nlp(text)
+    pattern = doc._.sentpattern
+    assert pattern.adjective.root.text == adjective
