@@ -27,7 +27,7 @@ test_data = {
     "pattern":[
         "SVC",
         "SVC",
-        "SVO",
+        "SVC",
     ]
 }
 
