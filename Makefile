@@ -1,6 +1,6 @@
-setup: requirements-dev.txt
+setup: requirements.txt
 	python -m venv .venv
-	pip install -r requirements-dev.txt
+	pip install -r requirements.txt
 
 clean:
 	rm -rf __pycache__
