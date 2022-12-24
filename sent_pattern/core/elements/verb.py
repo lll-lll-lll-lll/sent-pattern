@@ -28,10 +28,6 @@ class Verb(VerbInterface):
         return self._get_root_verb()
 
     @property
-    def beVerb(self):
-        return self._getBeVerb()
-
-    @property
     def root_verb_children(self):
         child = [child for child in self._dep_list["ROOT"][0].children]
         return child
