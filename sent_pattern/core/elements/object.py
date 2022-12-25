@@ -22,13 +22,13 @@ class RootObject(ObjectInterface):
     def root(self) -> List:
         return self._get_root()
 
-    def _get_root(self) -> List[Optional[str]]:
+    def _get_root(self) -> List[Optional[Token]]:
         objects = []
         root_verb = self._dep_list["ROOT"][0]
         child = [child.dep_ for child in root_verb.children]
         for object_dep in RootObject.DEP:
             if object_dep in child:
-                objects.append(self._dep_list[object_dep][0].text)
+                objects.append(self._dep_list[object_dep][0])
 
         return objects
 
