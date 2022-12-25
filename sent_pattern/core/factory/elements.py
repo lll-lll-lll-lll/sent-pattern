@@ -1,10 +1,10 @@
 from typing import Any, Dict, List, Optional
 from sent_pattern.core.elements.phrase import PrepPhrase
 from sent_pattern.core.interface.Ielement import AdjectiveInterface, ObjectInterface, SubjectInterface, VerbInterface
-from .elements import Adjective
-from .elements import RootObject
-from .elements import Subject
-from .elements import Verb
+from ..elements import Adjective
+from ..elements import RootObject
+from ..elements import Subject
+from ..elements import Verb
 from spacy.tokens import Token
 from ..interface.Ielements import ElementsFactoryInterface,ElementsInterface
 from spacy.tokens import Doc

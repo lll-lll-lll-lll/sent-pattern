@@ -14,22 +14,28 @@ test_data = {
     "texts":[
         "Apple’s new iPhone 14 lineup isn’t proving to be as popular as the company would have hoped for",
         "Apple also began to produce the iPhone 14 in India this week in order to shift some burden of manufacturing from factories in China",
-        "A recent report published by JP Morgan suggested that Apple is looking to shift 25% of its iPhone production to India by 2025. "
+        "A recent report published by JP Morgan suggested that Apple is looking to shift 25% of its iPhone production to India by 2025. ",
+        "In this quickstart we’ll create a development shell with specific tools installed. ",
     ],
     "subject": [
         "Apple’s new iPhone 14 lineup",
         "Apple",
         "A recent report",
+        "we"
     ],
     "verb": [
         "proving",
         "began",
-        "looking",
+        "suggested",
+        "create"
     ],
     "adjective":[
         "be",
         "produce",
         "looking"
+    ],
+    "object":[
+        "development shell"
     ],
     "pattern":[
         "SVC",
@@ -74,3 +80,10 @@ def test_pattern(text:str, adjective:str):
     doc = nlp(text)
     pattern = doc._.sentpattern
     assert pattern.adjective.root.text == adjective
+
+object_test_data = make_test_data(test_data["texts"], test_data["object"])
+@pytest.mark.parametrize(('text', 'object'), object_test_data)
+def test_object(text: str, object: str):
+    doc = nlp(text)
+    pattern = doc._.sentpattern
+    assert pattern.object.root.text == object
