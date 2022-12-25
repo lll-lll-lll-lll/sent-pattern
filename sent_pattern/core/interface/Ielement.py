@@ -1,5 +1,5 @@
 from abc import abstractmethod, ABCMeta
-from spacy.tokens import Token
+from spacy.tokens import Token, Span
 from typing import List, Union
 
 
@@ -19,6 +19,14 @@ class AdjectiveInterface(RootElementInterface):
 
         Returns:
             - Adjective(Token) | ""(str)
+        """
+        raise NotImplementedError()
+    
+    @property
+    @abstractmethod
+    def span(self) -> Union[Span, str]:
+        """
+        Span summarizing subtrees of elements
         """
         raise NotImplementedError()
 
@@ -51,6 +59,14 @@ class SubjectInterface(RootElementInterface):
             - _get_root(self): (Token)
         """
         raise NotImplementedError()
+    
+    @property
+    @abstractmethod
+    def span(self) -> Union[Span, str]:
+        """
+        Span summarizing subtrees of elements
+        """
+        raise NotImplementedError()
 
 
 class VerbInterface(RootElementInterface):
@@ -80,5 +96,13 @@ class ObjectInterface(RootElementInterface):
     @abstractmethod
     def object_num(self) -> int:
         """num of objects
+        """
+        raise NotImplementedError()
+    
+    @property
+    @abstractmethod
+    def span(self) -> Union[Span, str]:
+        """
+        Span summarizing subtrees of elements
         """
         raise NotImplementedError()
