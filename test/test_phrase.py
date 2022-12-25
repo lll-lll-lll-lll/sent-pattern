@@ -1,4 +1,4 @@
-from sent_pattern.core.elements.subs.phrase import PrepPhrase
+from sent_pattern.core.elements.sub.phrase import PrepPhrase
 import spacy
 from sent_pattern import tags
 
