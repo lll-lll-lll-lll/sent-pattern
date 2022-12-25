@@ -3,7 +3,7 @@ import spacy
 import sent_pattern
 import pytest
 
-from sent_pattern.core.elements.relative import RelativeClause
+from sent_pattern.core.elements.subs.relative import RelativeClause
 
 nlp = spacy.load("en_core_web_lg")
 nlp.add_pipe("span_noun")
