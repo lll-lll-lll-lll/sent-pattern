@@ -3,7 +3,6 @@ import spacy
 import sent_pattern
 import pytest
 
-from sent_pattern.core.elements.subs.relative import RelativeClause
 
 nlp = spacy.load("en_core_web_lg")
 nlp.add_pipe("span_noun")
@@ -15,7 +14,7 @@ test_data = {
         "Apple’s new iPhone 14 lineup isn’t proving to be as popular as the company would have hoped for",
         "Apple also began to produce the iPhone 14 in India this week in order to shift some burden of manufacturing from factories in China",
         "A recent report published by JP Morgan suggested that Apple is looking to shift 25% of its iPhone production to India by 2025. ",
-        "Tech author James Ball told the BBC it was `not a surprise` that Meta has had to agree to a serious pay-out but that it was `not that much` money to the tech giant."
+        "Tech author James Ball told the BBC it was `not a surprise` that Meta has had to agree to a serious pay-out but that it was `not that much` money to the tech giant.",
     ],
     "subject": [
         "Apple’s new iPhone 14 lineup",
@@ -37,7 +36,7 @@ test_data = {
         "SVC",
         "SV",
         "SVO",
-        "SVOO"
+        "SVOO",
     ]
 }
 
@@ -62,14 +61,6 @@ def test_verb(text:str, verb:str):
     doc = nlp(text)
     pattern = doc._.sentpattern
     assert pattern.verb.root.text == verb
-
-
-pattern_test_data = make_test_data(test_data["texts"], test_data["pattern"])
-@pytest.mark.parametrize(('text', 'pattern'), pattern_test_data)
-def test_pattern(text:str, pattern:str):
-    doc = nlp(text)
-    p = doc._.sentpattern
-    assert p.abbreviation == pattern
 
 
 pattern_test_data = make_test_data(test_data["texts"], test_data["adjective"])
