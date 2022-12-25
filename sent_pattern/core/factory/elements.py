@@ -6,7 +6,7 @@ from .elements import RootObject
 from .elements import Subject
 from .elements import Verb
 from spacy.tokens import Token
-from .interface.Ielements import ElementsFactoryInterface,ElementsInterface
+from ..interface.Ielements import ElementsFactoryInterface,ElementsInterface
 from spacy.tokens import Doc
 
 class RootElements(ElementsInterface):

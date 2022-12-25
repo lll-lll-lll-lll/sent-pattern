@@ -2,7 +2,7 @@ from sent_pattern.core.elements.phrase import PrepPhrase
 import spacy
 from sent_pattern import tags
 
-from sent_pattern.core.elementsfactory import CustomElements, ElementsFactory
+from sent_pattern.core.factory.elements import  ElementsFactory
 
 nlp = spacy.load("en_core_web_lg")
 

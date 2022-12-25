@@ -1,6 +1,6 @@
-from .interface.Ipattern import BaseSentencePatternInterface, SentencePatternInterface
-from .interface.Ielements import  ElementsInterface
-from .elements.patterns import FirstSentencePattern, SecondSentencePattern, ThirdSentencePattern, FourthSentencePattern, FifthSentencePattern
+from ..interface.Ipattern import BaseSentencePatternInterface, SentencePatternInterface
+from ..interface.Ielements import  ElementsInterface
+from ..elements.patterns import FirstSentencePattern, SecondSentencePattern, ThirdSentencePattern, FourthSentencePattern, FifthSentencePattern
 
 
 class SentencePattern(SentencePatternInterface):

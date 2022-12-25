@@ -2,10 +2,10 @@ from collections import defaultdict
 from spacy.tokens import Doc
 from spacy.tokens import Token
 from typing import List, Dict, Optional
-from sent_pattern.core.elementsfactory import ElementsFactory
+from sent_pattern.core.factory.elements import ElementsFactory
 from sent_pattern.core.interface.Ielements import ElementsFactoryInterface, ElementsInterface
 from sent_pattern.core.interface.Ipattern import BaseSentencePatternInterface
-from sent_pattern.core.patternfactory import SentencePattern
+from sent_pattern.core.factory.pattern import SentencePattern
 
 
 def create_dep_list(doc: Doc) -> Dict[str, List[Optional[Token]]]:

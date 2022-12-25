@@ -1,4 +1,4 @@
-from sent_pattern.core.patternfactory import SentencePattern
+from sent_pattern.core.factory.pattern import SentencePattern
 from sent_pattern.tags import create_dep_list, create_lemma_list, create_elements
 from spacy.tokens import Doc
 from spacy.language import Language
