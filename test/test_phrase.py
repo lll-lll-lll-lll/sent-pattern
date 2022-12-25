@@ -4,7 +4,7 @@ from sent_pattern import tags
 
 from sent_pattern.core.elementsfactory import CustomElements, ElementsFactory
 
-nlp = spacy.load("en_core_web_md")
+nlp = spacy.load("en_core_web_lg")
 
 def test_phrase():
     doc = nlp("The Eureka client handles all aspects of service instance registration and deregistration")

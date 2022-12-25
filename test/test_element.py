@@ -24,7 +24,7 @@ test_data = {
     "verb": [
         "proving",
         "began",
-        "suggested",
+        "looking",
     ],
     "adjective":[
         "be",
@@ -33,8 +33,8 @@ test_data = {
     ],
     "pattern":[
         "SVC",
-        "SVC",
-        "SVC",
+        "SV",
+        "SVO",
     ]
 }
 
