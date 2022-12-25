@@ -22,7 +22,7 @@ class RootObject(ObjectInterface):
     def root(self) -> List:
         return self._get_root()
 
-    def _get_root(self):
+    def _get_root(self) -> List[Optional[str]]:
         objects = []
         root_verb = self._dep_list["ROOT"][0]
         child = [child.dep_ for child in root_verb.children]
