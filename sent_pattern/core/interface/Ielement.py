@@ -101,7 +101,7 @@ class ObjectInterface(RootElementInterface):
 
     @property
     @abstractmethod
-    def root(self) -> List[str]:
+    def root(self) -> List[Optional[Token]]:
         """return list of objects
         Returns:
             objects: List
