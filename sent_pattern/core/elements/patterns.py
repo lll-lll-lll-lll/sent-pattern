@@ -13,12 +13,9 @@ class FirstSentencePattern(FirstSentencePatternInterface):
         self._verb = verb
 
     @property
-    def subject(self) -> "SubjectInterface":
-        return self._subject
-
+    def subject(self) -> "SubjectInterface": return self._subject
     @property
-    def verb(self) -> "VerbInterface":
-        return self._verb
+    def verb(self) -> "VerbInterface": return self._verb
     
     @property
     def spans(self) -> Dict[str, Union[List[Token], Token]]:
@@ -54,16 +51,11 @@ class SecondSentencePattern(SecondSentencePatternInterface):
         self._verb_root = verb.root
 
     @property
-    def subject(self) -> "SubjectInterface":
-        return self._subject
-
+    def subject(self) -> "SubjectInterface": return self._subject
     @property
-    def verb(self) -> "VerbInterface":
-        return self._verb
-
+    def verb(self) -> "VerbInterface": return self._verb
     @property
-    def adjective(self) -> "AdjectiveInterface":
-        return self._adjective
+    def adjective(self) -> "AdjectiveInterface": return self._adjective
     
     @property
     def spans(self) -> Dict[str, List[Optional[Token]]]:
@@ -144,16 +136,11 @@ class FourthSentencePattern(FourthSentencePatternInterface):
         self._verb_root = verb.root
 
     @property
-    def subject(self) -> "SubjectInterface":
-        return self._subject
-
+    def subject(self) -> "SubjectInterface": return self._subject
     @property
-    def verb(self) -> "VerbInterface":
-        return self._verb
-
+    def verb(self) -> "VerbInterface": return self._verb
     @property
-    def object(self) -> "ObjectInterface":
-        return self._object
+    def object(self) -> "ObjectInterface": return self._object
     
     @property
     def spans(self) -> Dict[str, List[Optional[Token]]]:
@@ -200,20 +187,13 @@ class FifthSentencePattern(FifthSentencePatternInterface):
         self._adjective_root = adjective.root
 
     @property
-    def subject(self) -> "SubjectInterface":
-        return self._subject
-
+    def subject(self) -> "SubjectInterface": return self._subject
     @property
-    def verb(self) -> "VerbInterface":
-        return self._verb
-
+    def verb(self) -> "VerbInterface": return self._verb
     @property
-    def object(self) -> "ObjectInterface":
-        return self._object
-
+    def object(self) -> "ObjectInterface": return self._object
     @property
-    def adjective(self) -> "AdjectiveInterface":
-        return self._adjective
+    def adjective(self) -> "AdjectiveInterface": return self._adjective
     
     @property
     def spans(self) -> Dict[str, List[Optional[Token]]]:
