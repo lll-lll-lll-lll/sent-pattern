@@ -35,3 +35,16 @@ class RootObject(ObjectInterface):
     @property
     def object_num(self) -> int:
         return len(self.root)
+
+    @property
+    def span(self):
+        return self._get_span()
+    
+    def _get_span(self) -> List[Optional[List[Token]]]:
+        root_objects = self._get_root()
+        if len(root_objects) > 0:
+            if len(root_objects) == 1:
+                return [token for token in root_objects[0].subtree]
+            elif len(root_objects) == 2:
+                return [[token for token in root_objects[0].subtree], [token for token in root_objects[1].subtree]]
+        return

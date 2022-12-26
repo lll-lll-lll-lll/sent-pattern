@@ -34,3 +34,11 @@ class Subject(SubjectInterface):
         for subj in Subject.DEP:
             if subj in verb_child_dep:
                 return subj
+    
+    @property
+    def span(self):
+        return self._get_span()
+    
+    def _get_span(self):
+        root_subject_token = self._get_root()
+        return [token for token in root_subject_token.subtree]

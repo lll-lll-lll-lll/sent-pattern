@@ -1,6 +1,8 @@
 from ..interface.Ipattern import (FirstSentencePatternInterface, FifthSentencePatternInterface, FourthSentencePatternInterface,
                                   SecondSentencePatternInterface, ThirdSentencePatternInterface)
 from ..interface.Ielement import SubjectInterface, VerbInterface, AdjectiveInterface, ObjectInterface
+from typing import Union, List, Dict,Optional
+from spacy.tokens import Token
 
 
 class FirstSentencePattern(FirstSentencePatternInterface):
@@ -15,6 +17,13 @@ class FirstSentencePattern(FirstSentencePatternInterface):
     @property
     def verb(self) -> "VerbInterface":
         return self._verb
+    
+    @property
+    def spans(self) -> Dict[str, Union[List[Token], Token]]:
+        span_dict = dict()
+        span_dict["S"] = self._subject.span
+        span_dict["V"] = self._verb.root
+        return span_dict
 
 
 class SecondSentencePattern(SecondSentencePatternInterface):
@@ -34,6 +43,14 @@ class SecondSentencePattern(SecondSentencePatternInterface):
     @property
     def adjective(self) -> "AdjectiveInterface":
         return self._adjective
+    
+    @property
+    def spans(self) -> Dict[str, List[Optional[Token]]]:
+        span_dict = dict()
+        span_dict["S"] = self._subject.span
+        span_dict["V"] = self._verb.root
+        span_dict["C"] = self._adjective.span
+        return span_dict
 
 
 class ThirdSentencePattern(ThirdSentencePatternInterface):
@@ -53,6 +70,14 @@ class ThirdSentencePattern(ThirdSentencePatternInterface):
     @property
     def object(self) -> "ObjectInterface":
         return self._object
+    
+    @property
+    def spans(self) -> Dict[str, List[Optional[Token]]]:
+        span_dict = dict()
+        span_dict["S"] = self._subject.span
+        span_dict["V"] = self._verb.root
+        span_dict["O"] = self._object.span
+        return span_dict
 
 
 class FourthSentencePattern(FourthSentencePatternInterface):
@@ -72,6 +97,15 @@ class FourthSentencePattern(FourthSentencePatternInterface):
     @property
     def object(self) -> "ObjectInterface":
         return self._object
+    
+    @property
+    def spans(self) -> Dict[str, List[Optional[Token]]]:
+        span_dict = dict()
+        span_dict["S"] = self._subject.span
+        span_dict["V"] = self._verb.root
+        span_dict["O1"] = self._object.span[0]
+        span_dict["O2"] = self._object.span[1]
+        return span_dict
 
 
 class FifthSentencePattern(FifthSentencePatternInterface):
@@ -101,3 +135,12 @@ class FifthSentencePattern(FifthSentencePatternInterface):
     @property
     def adjective(self) -> "AdjectiveInterface":
         return self._adjective
+    
+    @property
+    def spans(self) -> Dict[str, List[Optional[Token]]]:
+        span_dict = dict()
+        span_dict["S"] = self._subject.span
+        span_dict["V"] = self._verb.root
+        span_dict["O"] = self._object.span
+        span_dict["C"] = self.adjective.span
+        return span_dict
