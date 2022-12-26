@@ -11,6 +11,14 @@ class BaseSentencePatternInterface(metaclass=ABCMeta):
     @abstractmethod
     def spans(self) -> Dict[str, List[Token]]:
         raise NotImplementedError()
+    
+    @property
+    @abstractmethod
+    def span_str(self) -> Dict[str, List[str]]:
+        """
+        span property str
+        """
+        raise NotImplementedError()
 
 
 class FirstSentencePatternInterface(BaseSentencePatternInterface):
