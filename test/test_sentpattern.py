@@ -9,8 +9,15 @@ nlp.add_pipe("sent_pattern")
 
 
 test_data = {
-    "texts": ["The firm obtained that information without users' consent from a researcher who had been allowed by Facebook to deploy an app on the platform which harvested data from millions of its users."],
+    "texts": [
+        "The firm obtained that information without users' consent from a researcher who had been allowed by Facebook to deploy an app on the platform which harvested data from millions of its users.",
+        "She makes me happy."
+        ],
     "pattern": ["SVO"],
+    "spans": [
+        {"SVO":["The firm", "obtained", "that information"]},
+        {"SVOC":["She", "makes", "me", "happy"]},
+        ]
 }
 
 def make_test_data(texts: List[str], answers: List[str])-> List[Tuple[str,str]]:
@@ -24,5 +31,59 @@ pattern_test_data = make_test_data(test_data["texts"], test_data["pattern"])
 def test_pattern(text:str, pattern:str):
     doc = nlp(text)
     p = doc._.sentpattern
+    print(p.spans)
     assert p.abbreviation == pattern
 
+
+pattern_test_data = make_test_data(test_data["texts"], test_data["spans"])
+@pytest.mark.parametrize(('text', 'spans'), pattern_test_data)
+def test_pattern_span(text:str, spans:str):
+    doc = nlp(text)
+    p = doc._.sentpattern
+    if spans.get("SV") != None:
+        data = spans.get("SV")
+        s = data[0]
+        v = data[1]
+        assert s == p.span_str["S"]
+        assert v == p.span_str["V"]
+    elif spans.get("SVC") != None:
+        data = spans.get("SVC")
+        s = data[0]
+        v = data[1]
+        c = data[2]
+        assert s == p.span_str["S"]
+        assert v == p.span_str["V"]
+        assert c == p.span_str["C"]
+    elif spans.get("SVO") != None:
+        data = spans.get("SVO")
+        s = data[0]
+        v = data[1]
+        o = data[2]
+        assert s == p.span_str["S"]
+        assert v == p.span_str["V"]
+        assert o == p.span_str["O"]
+    elif spans.get("SVOO") != None:
+        data = spans.get("SVOO")
+        s = data[0]
+        v = data[1]
+        o = data[2]
+        o = data[3]
+        assert s == p.span_str["S"]
+        assert v == p.span_str["V"]
+        assert o == p.span_str["O1"]
+        assert o == p.span_str["O2"]
+    elif spans.get("SVOC") != None:
+        data = spans.get("SVOC")
+        s = data[0]
+        v = data[1]
+        o = data[2]
+        c = data[3]
+        print(p)
+        assert s == p.span_str["S"]
+        assert v == p.span_str["V"]
+        assert o == p.span_str["O"]
+        assert c == p.span_str["C"]
+
+
+        
+        
