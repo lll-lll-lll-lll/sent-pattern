@@ -1,7 +1,8 @@
+from sent_pattern.core.interface.Ielement import AdjectiveInterface,ObjectInterface
 from ..interface.Ipattern import BaseSentencePatternInterface, SentencePatternInterface
 from ..interface.Ielements import  ElementsInterface
 from ..elements.patterns import FirstSentencePattern, SecondSentencePattern, ThirdSentencePattern, FourthSentencePattern, FifthSentencePattern
-
+from spacy.symbols import ADJ,nsubj
 
 class SentencePattern(SentencePatternInterface):
     def __init__(self, elements: ElementsInterface):
@@ -35,6 +36,9 @@ class SentencePattern(SentencePatternInterface):
         verb = self.elements.verb
         adjective = self.elements.adjective
         rootobject = self.elements.rootobject
+        
+        if self.is_fifth_sentence(adjective=adjective, object=rootobject):
+            return FifthSentencePattern(subject=subject, verb=verb, object=rootobject, adjective=adjective)
 
         if adjective.have_root:
             if rootobject.object_num == 1:
@@ -49,3 +53,13 @@ class SentencePattern(SentencePatternInterface):
         else:
             pattern = FirstSentencePattern(subject=subject, verb=verb)
         return pattern
+
+    def is_fifth_sentence(self, adjective: AdjectiveInterface, object: ObjectInterface)-> bool:
+        if adjective.have_root == False:
+            return False
+        if adjective.root.pos == ADJ:
+            for token in adjective.root.children:
+                if token.dep == nsubj:
+                    object.root.append(token)
+                    return True
+        return False

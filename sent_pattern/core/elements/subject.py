@@ -13,16 +13,17 @@ class Subject(SubjectInterface):
 
     def __init__(self, dep_list: Dict[str, List[Optional[Token]]]):
         self._dep_list = dep_list
+        self._subject_root = self._get_root()
 
     @property
-    def root(self):
-        return self._get_root()
+    def root(self) -> Token:
+        return self._subject_root
 
     @property
     def dep_list(self):
         return self._dep_list
 
-    def _get_root(self):
+    def _get_root(self) -> List[Token]:
         subj_type = self._get_subj_type()
         root_subject = self.dep_list[subj_type][0]
         return root_subject
@@ -35,15 +36,12 @@ class Subject(SubjectInterface):
             if subj in verb_child_dep:
                 return subj
     
-    @property
-    def span(self):
-        return self._get_span()
+    def span(self,root_subject_token:Token):
+        return self._get_span(root_subject_token)
     
-    def _get_span(self) -> List[Token]:
-        root_subject_token = self._get_root()
+    def _get_span(self, root_subject_token:Token) -> List[Token]:
         return [token for token in root_subject_token.subtree]
     
-    @property
-    def span_str(self) -> str:
-        spans = self._get_span()
+    def span_str(self, root_subject_token:Token) -> str:
+        spans = self._get_span(root_subject_token)
         return " ".join([token.text for token in spans])

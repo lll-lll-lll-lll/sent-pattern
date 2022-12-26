@@ -22,10 +22,11 @@ class Verb(VerbInterface):
     def __init__(self, dep_list, lemma_list):
         self._dep_list = dep_list
         self._lemma_list = lemma_list
+        self._verb_root = self._get_root_verb()
 
     @property
     def root(self) -> RootVerb:
-        return self._get_root_verb()
+        return self._verb_root
 
     @property
     def root_verb_children(self):

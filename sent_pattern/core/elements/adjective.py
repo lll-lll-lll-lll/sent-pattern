@@ -17,6 +17,7 @@ class Adjective(AdjectiveInterface):
 
     def __init__(self, dep_list: Dict[str, List[Optional[str]]]):
         self._dep_list = dep_list
+        self._adjective_root = self._get_root()
     
     @property
     def dep_list(self):
@@ -24,7 +25,7 @@ class Adjective(AdjectiveInterface):
 
     @property
     def root(self):
-        return self._get_root()
+        return self._adjective_root
 
     def _get_root(self) -> Union[str, Token]:
         """
@@ -45,21 +46,17 @@ class Adjective(AdjectiveInterface):
     def have_root(self) -> bool:
         return bool(self.root)
     
-    @property
-    def span(self):
-        return self._get_span()
+    def span(self,root_adjective:Union[str, Token]):
+        return self._get_span(root_adjective)
     
-    def _get_span(self)->Optional[List[Token]]:
-        root_adjective = self._get_root()
+    def _get_span(self, root_adjective:Union[str, Token])->Optional[List[Token]]:
         if type(root_adjective) == str:
             return
         adje_list = [token for token in root_adjective.subtree]
         return adje_list
 
-    @property
-    def span_str(self) -> Optional[str]:
-        spans = self._get_span()
+    def span_str(self, spans:Optional[List[Token]]) -> Optional[str]:
         if len(spans) == 0:
             return
         else:
-            return " ".join([token.text for token in spans])
+            return " ".join([token.text for token in spans if token.dep_ != "nsubj"])

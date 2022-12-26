@@ -13,6 +13,7 @@ class RootObject(ObjectInterface):
 
     def __init__(self, dep_list: Dict[str, List[Optional[Token]]]):
         self._dep_list = dep_list
+        self._object_root = self._get_root()
 
     @property
     def dep_list(self):
@@ -20,7 +21,7 @@ class RootObject(ObjectInterface):
 
     @property
     def root(self) -> List[Optional[Token]]:
-        return self._get_root()
+        return self._object_root
 
     def _get_root(self) -> List[Optional[Token]]:
         objects = []
@@ -36,12 +37,10 @@ class RootObject(ObjectInterface):
     def object_num(self) -> int:
         return len(self.root)
 
-    @property
-    def span(self):
-        return self._get_span()
+    def span(self,root_objects:List[Optional[Token]]):
+        return self._get_span(root_objects)
     
-    def _get_span(self) -> Optional[List[Union[List[Token], Token]]]:
-        root_objects = self._get_root()
+    def _get_span(self, root_objects:List[Optional[Token]]) -> Optional[List[Union[List[Token], Token]]]:
         if len(root_objects) == 0:
             return
         if len(root_objects) == 1:
@@ -50,9 +49,7 @@ class RootObject(ObjectInterface):
             return [[token for token in root_objects[0].subtree], [token for token in root_objects[1].subtree]]
         return
     
-    @property
-    def spans_str(self) -> Optional[Union[List[str],str]]:
-        spans = self._get_span()
+    def spans_str(self, spans: Optional[List[Union[List[Token], Token]]]) -> Optional[Union[List[str],str]]:
         if len(spans) == 0:
             return
         elif len(spans) == 1:
