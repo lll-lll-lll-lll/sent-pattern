@@ -1,11 +1,16 @@
 from abc import ABCMeta, abstractclassmethod, abstractmethod
+from typing import List,Dict
+from spacy.tokens import Token
 from .Ielements import SubjectInterface, VerbInterface, AdjectiveInterface, ObjectInterface, ElementsInterface
 
 
 class BaseSentencePatternInterface(metaclass=ABCMeta):
     """ All FifthSentencePattern Base Interface
     """
-    pass
+    @property
+    @abstractmethod
+    def spans(self) -> Dict[str, List[Token]]:
+        raise NotImplementedError()
 
 
 class FirstSentencePatternInterface(BaseSentencePatternInterface):
