@@ -1,6 +1,6 @@
 from abc import abstractmethod, ABCMeta
 from spacy.tokens import Token, Span
-from typing import List, Union
+from typing import List, Union,Optional
 
 
 class RootElementInterface(metaclass=ABCMeta):
@@ -24,7 +24,7 @@ class AdjectiveInterface(RootElementInterface):
     
     @property
     @abstractmethod
-    def span(self) -> Union[Span, str]:
+    def span(self) -> Optional[List[Token]]:
         """
         Span summarizing subtrees of elements
         """
@@ -62,7 +62,7 @@ class SubjectInterface(RootElementInterface):
     
     @property
     @abstractmethod
-    def span(self) -> Union[Span, str]:
+    def span(self) -> List[Token]:
         """
         Span summarizing subtrees of elements
         """
@@ -101,7 +101,7 @@ class ObjectInterface(RootElementInterface):
     
     @property
     @abstractmethod
-    def span(self) -> Union[Span, str]:
+    def span(self) -> List[Optional[List[Token]]]:
         """
         Span summarizing subtrees of elements
         """
