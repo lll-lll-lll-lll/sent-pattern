@@ -19,7 +19,7 @@ class RootObject(ObjectInterface):
         return self._dep_list
 
     @property
-    def root(self) -> List:
+    def root(self) -> List[Optional[Token]]:
         return self._get_root()
 
     def _get_root(self) -> List[Optional[Token]]:
