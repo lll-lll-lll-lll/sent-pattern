@@ -55,3 +55,11 @@ class Adjective(AdjectiveInterface):
             return
         adje_list = [token for token in root_adjective.subtree]
         return adje_list
+
+    @property
+    def span_str(self) -> Optional[str]:
+        spans = self._get_span()
+        if len(spans) == 0:
+            return
+        else:
+            return " ".join([token.text for token in spans])

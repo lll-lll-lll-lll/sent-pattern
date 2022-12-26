@@ -39,6 +39,11 @@ class Subject(SubjectInterface):
     def span(self):
         return self._get_span()
     
-    def _get_span(self):
+    def _get_span(self) -> List[Token]:
         root_subject_token = self._get_root()
         return [token for token in root_subject_token.subtree]
+    
+    @property
+    def span_str(self) -> str:
+        spans = self._get_span()
+        return " ".join([token.text for token in spans])

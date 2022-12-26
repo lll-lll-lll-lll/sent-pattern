@@ -24,6 +24,13 @@ class FirstSentencePattern(FirstSentencePatternInterface):
         span_dict["S"] = self._subject.span
         span_dict["V"] = self._verb.root
         return span_dict
+    
+    @property
+    def span_str(self) -> Dict[str, Optional[str]]:
+        span_str_dict = dict()
+        span_str_dict["S"] = self._subject.span_str
+        span_str_dict["V"] = self._verb.root.text
+        return span_str_dict
 
 
 class SecondSentencePattern(SecondSentencePatternInterface):
@@ -51,6 +58,14 @@ class SecondSentencePattern(SecondSentencePatternInterface):
         span_dict["V"] = self._verb.root
         span_dict["C"] = self._adjective.span
         return span_dict
+    
+    @property
+    def span_str(self) -> Dict[str, Optional[str]]:
+        span_str_dict = dict()
+        span_str_dict["S"] = self._subject.span_str
+        span_str_dict["V"] = self._verb.root.text
+        span_str_dict["C"] = self._adjective.span_str
+        return span_str_dict
 
 
 class ThirdSentencePattern(ThirdSentencePatternInterface):
@@ -78,6 +93,14 @@ class ThirdSentencePattern(ThirdSentencePatternInterface):
         span_dict["V"] = self._verb.root
         span_dict["O"] = self._object.span
         return span_dict
+    
+    @property
+    def span_str(self) -> Dict[str, Optional[str]]:
+        span_str_dict = dict()
+        span_str_dict["S"] = self._subject.span_str
+        span_str_dict["V"] = self._verb.root.text
+        span_str_dict["O"] = self._object.spans_str
+        return span_str_dict
 
 
 class FourthSentencePattern(FourthSentencePatternInterface):
@@ -106,6 +129,15 @@ class FourthSentencePattern(FourthSentencePatternInterface):
         span_dict["O1"] = self._object.span[0]
         span_dict["O2"] = self._object.span[1]
         return span_dict
+    
+    @property
+    def span_str(self) -> Dict[str, Optional[str]]:
+        span_str_dict = dict()
+        span_str_dict["S"] = self._subject.span_str
+        span_str_dict["V"] = self._verb.root.text
+        span_str_dict["O1"] = self._object.spans_str[0]
+        span_str_dict["O2"] = self._object.spans_str[1]
+        return span_str_dict
 
 
 class FifthSentencePattern(FifthSentencePatternInterface):
@@ -144,3 +176,12 @@ class FifthSentencePattern(FifthSentencePatternInterface):
         span_dict["O"] = self._object.span
         span_dict["C"] = self.adjective.span
         return span_dict
+    
+    @property
+    def span_str(self) -> Dict[str, Optional[str]]:
+        span_str_dict = dict()
+        span_str_dict["S"] = self._subject.span_str
+        span_str_dict["V"] = self._verb.root.text
+        span_str_dict["O"] = self._object.spans_str
+        span_str_dict["C"] = self._adjective.span_str
+        return span_str_dict

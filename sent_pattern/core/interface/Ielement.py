@@ -29,6 +29,14 @@ class AdjectiveInterface(RootElementInterface):
         Span summarizing subtrees of elements
         """
         raise NotImplementedError()
+    
+    @property
+    @abstractmethod
+    def span_str(self) -> str:
+        """
+        span property str
+        """
+        raise NotImplementedError()
 
     @property
     @abstractmethod
@@ -65,6 +73,14 @@ class SubjectInterface(RootElementInterface):
     def span(self) -> List[Token]:
         """
         Span summarizing subtrees of elements
+        """
+        raise NotImplementedError()
+    
+    @property
+    @abstractmethod
+    def span_str(self) -> str:
+        """
+        span property str
         """
         raise NotImplementedError()
 
@@ -104,5 +120,13 @@ class ObjectInterface(RootElementInterface):
     def span(self) -> List[Optional[List[Token]]]:
         """
         Span summarizing subtrees of elements
+        """
+        raise NotImplementedError()
+    
+    @property
+    @abstractmethod
+    def spans_str(self) -> Optional[Union[List[str],str]]:
+        """
+        span property str
         """
         raise NotImplementedError()
