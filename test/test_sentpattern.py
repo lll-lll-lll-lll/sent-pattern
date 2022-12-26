@@ -17,6 +17,8 @@ test_data = {
     "spans": [
         {"SVO":["The firm", "obtained", "that information"]},
         {"SVOC":["She", "makes", "me", "happy"]},
+        {"SVC": ["I", "am", "hero"]},
+        {"SVOO": ["I", "give", "you", "something"]}
         ]
 }
 
