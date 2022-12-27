@@ -21,9 +21,9 @@ class SentencePattern(SentencePatternInterface):
 
     @property
     def pattern_type(self) -> BaseSentencePatternInterface:
-        return self._classify_to_pattern_type()
+        return self._classify_pattern_type()
 
-    def _classify_to_pattern_type(self) -> BaseSentencePatternInterface:
+    def _classify_pattern_type(self) -> BaseSentencePatternInterface:
         """
         classify as one of the fifth sentence types
 

@@ -158,7 +158,7 @@ class SentencePatternInterface(metaclass=ABCMeta):
         raise NotImplementedError()
 
     @abstractclassmethod
-    def _classify_to_pattern_type(self):
+    def _classify_pattern_type(self):
         """
         classify sentence pattern.
         """
