@@ -62,7 +62,7 @@ class SecondSentencePattern(SecondSentencePatternInterface):
         if self._is_element_in_span_dict(self.span_dict):
             return self.span_dict
         self.span_dict["S"] = self._subject.span(self._subject_root)
-        self.span_dict["V"] = self._verb_root.text
+        self.span_dict["V"] = self._verb_root
         self.span_dict["C"] = self._adjective.span(self._adjective_root)
         return self.span_dict
     
@@ -105,7 +105,7 @@ class ThirdSentencePattern(ThirdSentencePatternInterface):
         if self._is_element_in_span_dict(self.span_dict):
             return self.span_dict
         self.span_dict["S"] = self._subject.span(self._subject_root)
-        self.span_dict["V"] = self._verb_root.text
+        self.span_dict["V"] = self._verb_root
         self.span_dict["O"] = self._object.span(self._object_root)
         return self.span_dict
     
@@ -202,7 +202,7 @@ class FifthSentencePattern(FifthSentencePatternInterface):
         if self._is_element_in_span_dict(self.span_dict):
             return self.span_dict
         self.span_dict["S"] = self._subject.span(self._subject_root)
-        self.span_dict["V"] = self._verb.root.text
+        self.span_dict["V"] = self._verb.root
         self.span_dict["O"] = self._object.span(self._object_root)
         self.span_dict["C"] = self._adjective.span(self._adjective_root)
         return self.span_dict
