@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABCMeta
-from spacy.tokens import Token, Span
+from spacy.tokens import Token
 from typing import List, Union,Optional
-
+from typing import TypeAlias
 
 class RootElementInterface(metaclass=ABCMeta):
     @property
@@ -9,11 +9,13 @@ class RootElementInterface(metaclass=ABCMeta):
     def root(self) -> Union[Token, str]:
         raise NotImplementedError()
 
-
+AdjectiveSpanType: TypeAlias = Optional[List[Token]]
+AdjectiveSpanStrType: TypeAlias = Optional[str]
+AdjectiveRootType: TypeAlias = Union[Token, str]
 class AdjectiveInterface(RootElementInterface):
     @property
     @abstractmethod
-    def root(self) -> Union[Token, str]:
+    def root(self) -> AdjectiveRootType:
         """
         Return Adjective (C)
 
@@ -23,14 +25,14 @@ class AdjectiveInterface(RootElementInterface):
         raise NotImplementedError()
     
     @abstractmethod
-    def span(self,root_adjective:Union[str, Token]) -> Optional[List[Token]]:
+    def span(self,root:AdjectiveRootType) -> AdjectiveSpanType:
         """
         Span summarizing subtrees of elements
         """
         raise NotImplementedError()
     
     @abstractmethod
-    def span_str(self,spans:Optional[List[Token]]) -> str:
+    def span_str(self,spans:AdjectiveSpanType) -> AdjectiveSpanStrType:
         """
         span property str
         """
@@ -49,32 +51,30 @@ class AdjectiveInterface(RootElementInterface):
         raise NotImplementedError()
 
 
+SubjectSpanType: TypeAlias = List[Token]
+SubjectRootType: TypeAlias = Token
 class SubjectInterface(RootElementInterface):
-
-    def __init__(self, dep_list):
-        pass
-
     @property
     @abstractmethod
-    def root(self) ->Token:
+    def root(self) -> SubjectRootType:
         """
         return subject
         Params:
 
         Returns:
-            - _get_root(self): (Token)
+            - _get_root(self): (SubjectRootType)
         """
         raise NotImplementedError()
     
     @abstractmethod
-    def span(self,root_subject_token:Token) -> List[Token]:
+    def span(self,root:SubjectRootType) -> SubjectSpanType:
         """
         Span summarizing subtrees of elements
         """
         raise NotImplementedError()
 
     @abstractmethod
-    def span_str(self,root_subject_token:Token) -> str:
+    def span_str(self,span:SubjectSpanType) -> str:
         """
         span property str
         """
@@ -92,12 +92,13 @@ class VerbInterface(RootElementInterface):
         """
         return NotImplementedError()
 
-
+ObjectRootType: TypeAlias = List[Optional[Token]]
+ObjectSpanType: TypeAlias = Optional[List[Union[List[Token], Token]]]
 class ObjectInterface(RootElementInterface):
 
     @property
     @abstractmethod
-    def root(self) -> List[Optional[Token]]:
+    def root(self) -> ObjectRootType:
         """return list of objects
         Returns:
             objects: List
@@ -112,14 +113,14 @@ class ObjectInterface(RootElementInterface):
         raise NotImplementedError()
     
     @abstractmethod
-    def span(self,root_objects:List[Optional[Token]]) -> List[Optional[List[Token]]]:
+    def span(self,root:ObjectRootType) -> ObjectSpanType:
         """
         Span summarizing subtrees of elements
         """
         raise NotImplementedError()
     
     @abstractmethod
-    def span_str(self,spans: Optional[List[Union[List[Token], Token]]]) -> Optional[Union[List[str],str]]:
+    def span_str(self,spans: ObjectSpanType) -> Optional[Union[List[str],str]]:
         """
         span property str
         """

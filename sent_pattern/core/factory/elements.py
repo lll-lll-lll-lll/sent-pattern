@@ -1,13 +1,25 @@
-from typing import Any, Dict, List, Optional
 from sent_pattern.core.elements.sub.phrase import PrepPhrase
 from sent_pattern.core.interface.Ielement import AdjectiveInterface, ObjectInterface, SubjectInterface, VerbInterface
+from sent_pattern.core.type import DepLemmaListType
 from ..elements import Adjective
 from ..elements import RootObject
 from ..elements import Subject
 from ..elements import Verb
-from spacy.tokens import Token
 from ..interface.Ielements import ElementsFactoryInterface,ElementsInterface
 from spacy.tokens import Doc
+from enum import Enum
+
+class ElementOption(Enum):
+    Prep = "prep"
+    Relcl = "relcl"
+
+    @classmethod
+    def has_option(cls, value: str) -> bool:
+        return value in cls._value2member_map_
+
+    @classmethod
+    def str_list(cls) -> str:
+        return ", ".join([e.value for e in ElementOption])
 
 class RootElements(ElementsInterface):
     """
@@ -31,13 +43,22 @@ class CustomElements(RootElements):
             verb: VerbInterface, 
             adjective: AdjectiveInterface, 
             rootobject: ObjectInterface, 
-            option: Any):
+            option: ElementOption):
 
         super().__init__(subject, verb, adjective, rootobject)
-        self._option = option
+        self._option = self._is_valid_option(option)
+
+    def _is_valid_option(self, option_str: str) -> str:
+        try:
+            if ElementOption.has_option(option_str):
+                return option_str
+            else:
+                raise ValueError
+        except ValueError:
+            raise ValueError(f"invalid option. valid option: [{ElementOption.str_list()}]")
     
     @property
-    def option(self):
+    def option(self) -> str:
         """
         option property is freely configurable properties
         """
@@ -47,13 +68,13 @@ class CustomElements(RootElements):
 class ElementsFactory(ElementsFactoryInterface):
 
     @classmethod
-    def make_root_elements(cls, dep_list: Dict[str, List[Optional[Token]]], lemma_list: Dict[str, List[Optional[Token]]]) -> "ElementsInterface":
+    def make_root_elements(cls, dep_list: DepLemmaListType, lemma_list: DepLemmaListType) -> "ElementsInterface":
         """
         create instance of self
         Parameters
         ----------
-        dep_list : Dict[str, Optional[Token]
-        lemma_list : Dict[str, Optional[Token]]
+        dep_list : type.DepLemmaListType
+        lemma_list : type.DepLemmaListType
 
         Returns
         -------
@@ -67,16 +88,13 @@ class ElementsFactory(ElementsFactoryInterface):
         return RootElements(subject, verb, adjective, rootobject)
     
     @classmethod
-    def make_custom_elements(cls, dep_list: Dict[str, List[Optional[Token]]], lemma_list: Dict[str, List[Optional[Token]]], doc:Doc,  option:str) -> "CustomElements":
+    def make_custom_elements(cls, dep_list: DepLemmaListType, lemma_list: DepLemmaListType, doc:Doc,  option:str) -> "CustomElements":
         subject = Subject(dep_list)
         verb = Verb(dep_list, lemma_list)
         adjective = Adjective(dep_list)
         rootobject = RootObject(dep_list)
 
-        if option == "prep":
-            prep = PrepPhrase()
-            doc = prep.register_prep_phrase(doc)
-            custom_elements = CustomElements(subject, verb, adjective, rootobject, option=prep)
-        else:
-            raise AttributeError("option is not included")
+        prep = PrepPhrase()
+        doc = prep.register_prep_phrase(doc)
+        custom_elements = CustomElements(subject, verb, adjective, rootobject, option=option)
         return custom_elements

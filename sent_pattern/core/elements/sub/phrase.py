@@ -1,6 +1,4 @@
 from spacy.tokens import Span, Token, SpanGroup, Doc
-from typing import List
-
 
 class PhraseData:
     PREP_LIST = [
@@ -21,7 +19,7 @@ class PrepPhrase():
         Token.set_extension("is_prep", getter=is_prep, force=True)
     
     @property
-    def prep_groups(self):
+    def prep_groups(self) -> SpanGroup:
         return self._span_group
 
     def register_prep_phrase(self, doc: Doc) -> Doc:

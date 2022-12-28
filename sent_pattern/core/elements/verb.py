@@ -1,3 +1,4 @@
+from typing import Any, List
 from spacy.tokens import Token
 from ..interface.Ielements import VerbInterface
 
@@ -9,7 +10,7 @@ class RootVerb(VerbInterface):
             raise AttributeError.message("root verb doesn't exist.")
 
     @property
-    def root(self):
+    def root(self) -> Token:
         return self.__root
 
     def __str__(self) -> str:
@@ -25,14 +26,14 @@ class Verb(VerbInterface):
         self._verb_root = self._get_root_verb()
 
     @property
-    def root(self) -> RootVerb:
+    def root(self) -> Token:
         return self._verb_root
 
     @property
-    def root_verb_children(self):
+    def root_verb_children(self)-> List[Any]:
         child = [child for child in self._dep_list["ROOT"][0].children]
         return child
 
-    def _get_root_verb(self):
+    def _get_root_verb(self) -> Token:
         root = RootVerb(self._dep_list["ROOT"][0]).root
         return root

@@ -1,3 +1,4 @@
+from typing import List
 from spacy.tokens import Doc, Span
 
 
@@ -6,8 +7,8 @@ class RelativeClause():
         self._doc = doc
         self.root = self._get_relative(doc)
 
-    def _get_relative(self, doc: Doc):
-        spans = []
+    def _get_relative(self, doc: Doc) -> List[Span]:
+        spans:List[Span] = []
         for token in doc:
             if token.dep_ == "relcl":
                 subtree = [t for t in token.subtree]

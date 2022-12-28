@@ -6,9 +6,10 @@ from sent_pattern.core.factory.elements import ElementsFactory
 from sent_pattern.core.interface.Ielements import ElementsFactoryInterface, ElementsInterface
 from sent_pattern.core.interface.Ipattern import BaseSentencePatternInterface
 from sent_pattern.core.factory.pattern import SentencePattern
+from sent_pattern.core.type import DepLemmaListType
 
 
-def create_dep_list(doc: Doc) -> Dict[str, List[Optional[Token]]]:
+def create_dep_list(doc: Doc) -> DepLemmaListType:
     """
     Put into dict for each dep of Token
     Parameters
@@ -26,7 +27,7 @@ def create_dep_list(doc: Doc) -> Dict[str, List[Optional[Token]]]:
     return dict(dep_list)
 
 
-def create_lemma_list(doc: Doc) -> Dict[str, List[Optional[Token]]]:
+def create_lemma_list(doc: Doc) -> DepLemmaListType:
     """
     Put into dict for each lemma of Token
     Parameters
@@ -44,11 +45,11 @@ def create_lemma_list(doc: Doc) -> Dict[str, List[Optional[Token]]]:
     return dict(lemma_list)
 
 
-def create_elements(dep_list: Dict[str, List[Optional[Token]]], lemma_list: Dict[str, List[Optional[Token]]]) -> ElementsFactoryInterface:
+def create_elements(dep_list: DepLemmaListType, lemma_list: DepLemmaListType) -> ElementsFactoryInterface:
     """
     Parameters
     ----------
-    dep_list : Dict[str, List[Optional[Token]]]
+    dep_list : DepLemmaListType
         Put into dict for each dep of Token
 
     lemma_list: Dict[str, Optional[Token]]

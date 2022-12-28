@@ -19,12 +19,10 @@ class SentencePattern(SentencePatternInterface):
         name: str
             the class name string of one of the fifth sentence types
         """
-        name = self.pattern_type.__class__.__name__
-        return name
+        return self.pattern_type.__class__.__name__
 
     @property
-    def pattern_type(self) -> SentencePatternType:
-        return self._classify_pattern_type()
+    def pattern_type(self) -> SentencePatternType: return self._classify_pattern_type()
 
     def _classify_pattern_type(self) -> SentencePatternType:
         """
@@ -57,7 +55,7 @@ class SentencePattern(SentencePatternInterface):
             pattern = FirstSentencePattern(subject=subject, verb=verb)
         return pattern
 
-    def is_fifth_sentence(self, adjective: AdjectiveInterface, object: ObjectInterface)-> bool:
+    def is_fifth_sentence(self, adjective: AdjectiveInterface, object: ObjectInterface) -> bool:
         if adjective.have_root == False:
             return False
         if adjective.root.pos == ADJ:

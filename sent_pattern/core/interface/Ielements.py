@@ -1,6 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from typing import Any, Dict, List, Optional
-from spacy.tokens import Token
+from sent_pattern.core.type import DepLemmaListType
 from .Ielement import SubjectInterface, VerbInterface, AdjectiveInterface, ObjectInterface
 
 class ElementsInterface(metaclass=ABCMeta):
@@ -16,7 +15,7 @@ class ElementsFactoryInterface(metaclass=ABCMeta):
 
     @classmethod
     @abstractmethod
-    def make_root_elements(cls, dep_list: Dict[str, List[Optional[Token]]], lemma_list: Dict[str, List[Optional[Token]]]) -> "ElementsInterface":
+    def make_root_elements(cls, dep_list: DepLemmaListType, lemma_list: DepLemmaListType) -> "ElementsInterface":
         """
         create instance of self
         Parameters
@@ -33,7 +32,7 @@ class ElementsFactoryInterface(metaclass=ABCMeta):
 
     @classmethod
     @abstractmethod
-    def make_custom_elements(cls, dep_list: Dict[str, List[Optional[Token]]], lemma_list: Dict[str, List[Optional[Token]]], option: str) -> "ElementsInterface":
+    def make_custom_elements(cls, dep_list: DepLemmaListType, lemma_list: DepLemmaListType, option: str) -> "ElementsInterface":
         """
         Customize generated elements by 'options'
         Parameters

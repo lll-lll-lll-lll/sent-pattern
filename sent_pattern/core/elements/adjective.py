@@ -1,5 +1,5 @@
-from typing import List, Dict, Optional, Union
-from spacy.tokens import Token
+from sent_pattern.core.interface.Ielement import AdjectiveRootType, AdjectiveSpanStrType, AdjectiveSpanType
+from sent_pattern.core.type import DepLemmaListType
 from ..interface.Ielements import AdjectiveInterface
 
 
@@ -15,19 +15,19 @@ class Adjective(AdjectiveInterface):
         "npadvmod"
     ]
 
-    def __init__(self, dep_list: Dict[str, List[Optional[str]]]):
+    def __init__(self, dep_list:DepLemmaListType):
         self._dep_list = dep_list
         self._adjective_root = self._get_root()
     
     @property
-    def dep_list(self):
+    def dep_list(self) -> DepLemmaListType:
         return self._dep_list
 
     @property
-    def root(self):
+    def root(self) -> AdjectiveRootType:
         return self._adjective_root
 
-    def _get_root(self) -> Union[str, Token]:
+    def _get_root(self) -> AdjectiveRootType:
         """
         get root adjective
         Return
@@ -46,16 +46,16 @@ class Adjective(AdjectiveInterface):
     def have_root(self) -> bool:
         return bool(self.root)
     
-    def span(self,root_adjective:Union[str, Token]):
-        return self._get_span(root_adjective)
+    def span(self,root:AdjectiveRootType) -> AdjectiveSpanType:
+        return self._get_span(root)
     
-    def _get_span(self, root_adjective:Union[str, Token])->Optional[List[Token]]:
-        if type(root_adjective) == str:
+    def _get_span(self, root:AdjectiveRootType)->AdjectiveSpanType:
+        if type(root) == str:
             return
-        adje_list = [token for token in root_adjective.subtree]
+        adje_list = [token for token in root.subtree]
         return adje_list
 
-    def span_str(self, spans:Optional[List[Token]]) -> Optional[str]:
+    def span_str(self, spans:AdjectiveSpanType) -> AdjectiveSpanStrType:
         if len(spans) == 0:
             return
         else:
