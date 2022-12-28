@@ -11,14 +11,20 @@ nlp.add_pipe("sent_pattern")
 test_data = {
     "texts": [
         "The firm obtained that information without users' consent from a researcher who had been allowed by Facebook to deploy an app on the platform which harvested data from millions of its users.",
-        "She makes me happy."
+        "She makes me happy.",
+        "I am hero",
+        "I give you something",
+        "The Eureka client handles all aspects of service instance registration and deregistration",
+        "She goes to school"
         ],
     "pattern": ["SVO"],
     "spans": [
         {"SVO":["The firm", "obtained", "that information"]},
         {"SVOC":["She", "makes", "me", "happy"]},
         {"SVC": ["I", "am", "hero"]},
-        {"SVOO": ["I", "give", "you", "something"]}
+        {"SVOO": ["I", "give", "you", "something"]},
+        {"SVO": ["The Eureka client", "handles", "all aspects of service instance registration and deregistration"]},
+        {"SV": ["She", "goes", ]}
         ]
 }
 
@@ -68,11 +74,11 @@ def test_pattern_span(text:str, spans:str):
         data = spans.get("SVOO")
         s = data[0]
         v = data[1]
-        o = data[2]
+        o1 = data[2]
         o = data[3]
         assert s == p.span_str["S"]
         assert v == p.span_str["V"]
-        assert o == p.span_str["O1"]
+        assert o1 == p.span_str["O1"]
         assert o == p.span_str["O2"]
     elif spans.get("SVOC") != None:
         data = spans.get("SVOC")
