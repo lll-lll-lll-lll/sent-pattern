@@ -1,8 +1,11 @@
 from sent_pattern.core.interface.Ielement import AdjectiveInterface,ObjectInterface
-from ..interface.Ipattern import BaseSentencePatternInterface, SentencePatternInterface
+from ..interface.Ipattern import BaseSentencePatternInterface, FifthSentencePatternInterface, FirstSentencePatternInterface, FourthSentencePatternInterface, SecondSentencePatternInterface, SentencePatternInterface, ThirdSentencePatternInterface
 from ..interface.Ielements import  ElementsInterface
 from ..elements.patterns import FirstSentencePattern, SecondSentencePattern, ThirdSentencePattern, FourthSentencePattern, FifthSentencePattern
 from spacy.symbols import ADJ,nsubj
+from typing import TypeAlias
+
+SentencePatternType: TypeAlias = FirstSentencePatternInterface | SecondSentencePatternInterface | ThirdSentencePatternInterface | FourthSentencePatternInterface | FifthSentencePatternInterface
 
 class SentencePattern(SentencePatternInterface):
     def __init__(self, elements: ElementsInterface):
@@ -20,10 +23,10 @@ class SentencePattern(SentencePatternInterface):
         return name
 
     @property
-    def pattern_type(self) -> BaseSentencePatternInterface:
+    def pattern_type(self) -> SentencePatternType:
         return self._classify_pattern_type()
 
-    def _classify_pattern_type(self) -> BaseSentencePatternInterface:
+    def _classify_pattern_type(self) -> SentencePatternType:
         """
         classify as one of the fifth sentence types
 
