@@ -20,4 +20,3 @@ def test_custom_phrase():
     lemma_list = tags.create_lemma_list(doc)
     custom = ElementsFactory.make_custom_elements(dep_list, lemma_list, doc=doc, option="prep")
     phrase = custom.option
-    print(phrase.prep_groups)
