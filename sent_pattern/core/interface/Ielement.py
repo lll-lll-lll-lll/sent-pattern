@@ -119,7 +119,7 @@ class ObjectInterface(RootElementInterface):
         raise NotImplementedError()
     
     @abstractmethod
-    def spans_str(self,spans: Optional[List[Union[List[Token], Token]]]) -> Optional[Union[List[str],str]]:
+    def span_str(self,spans: Optional[List[Union[List[Token], Token]]]) -> Optional[Union[List[str],str]]:
         """
         span property str
         """
