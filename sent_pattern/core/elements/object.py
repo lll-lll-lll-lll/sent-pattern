@@ -44,16 +44,16 @@ class RootObject(ObjectInterface):
         if len(root_objects) == 0:
             return
         if len(root_objects) == 1:
-            return [token for token in root_objects[0].subtree]
+            return [[token for token in root_objects[0].subtree]]
         elif len(root_objects) == 2:
             return [[token for token in root_objects[0].subtree], [token for token in root_objects[1].subtree]]
         return
     
-    def spans_str(self, spans: Optional[List[Union[List[Token], Token]]]) -> Optional[Union[List[str],str]]:
+    def span_str(self, spans: Optional[List[Union[List[Token], Token]]]) -> Optional[Union[List[str],str]]:
         if len(spans) == 0:
             return
         elif len(spans) == 1:
-            return " ".join([token.text for token in spans])
+            return " ".join([token.text for token in spans[0]])
         elif len(spans) == 2:
             return [" ".join([token.text for token in spans[0]])," ".join([token.text for token in spans[1]])]
         return

@@ -113,9 +113,10 @@ class ThirdSentencePattern(ThirdSentencePatternInterface):
     def span_str(self) -> Dict[str, Optional[str]]:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
+        object_spans = self._object.span(self._object_root)
         self.span_dict_str["S"] = self._subject.span_str(self._subject_root)
         self.span_dict_str["V"] = self._verb_root.text
-        self.span_dict_str["O"] = self._object.spans_str(self._object_root)
+        self.span_dict_str["O"] = self._object.span_str(object_spans)
         return self.span_dict_str
     
     def _is_element_in_span_dict(self, dic:dict) -> bool:
@@ -156,10 +157,11 @@ class FourthSentencePattern(FourthSentencePatternInterface):
     def span_str(self) -> Dict[str, Optional[str]]:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
+        object_spans = self._object.span(self._object_root)
         self.span_dict_str["S"] = self._subject.span_str(self._subject_root)
         self.span_dict_str["V"] = self._verb.root.text
-        self.span_dict_str["O1"] = self._object.spans_str(self._object_root)[0]
-        self.span_dict_str["O2"] = self._object.spans_str(self._object_root)[1]
+        self.span_dict_str["O1"] = self._object.span_str(object_spans)[0]
+        self.span_dict_str["O2"] = self._object.span_str(object_spans)[1]
         return self.span_dict_str
     
     def _is_element_in_span_dict(self, dic:dict) -> bool:
@@ -209,10 +211,11 @@ class FifthSentencePattern(FifthSentencePatternInterface):
     def span_str(self) -> Dict[str, Optional[str]]:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
+        object_spans = self._object.span(self._object_root)
         adjective_span = self._adjective.span(self._adjective_root)
         self.span_dict_str["S"] = self._subject.span_str(self._subject_root)
         self.span_dict_str["V"] = self._verb.root.text
-        self.span_dict_str["O"] = self._object.spans_str(self._object_root)
+        self.span_dict_str["O"] = self._object.span_str(object_spans)
         self.span_dict_str["C"] = self._adjective.span_str(adjective_span)
         return self.span_dict_str
 
