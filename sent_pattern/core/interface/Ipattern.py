@@ -14,7 +14,7 @@ class BaseSentencePatternInterface(metaclass=ABCMeta):
     
     @property
     @abstractmethod
-    def span_str(self) -> Dict[str, List[str]]:
+    def spans_to_str(self) -> Dict[str, List[str]]:
         """
         span property str
         """

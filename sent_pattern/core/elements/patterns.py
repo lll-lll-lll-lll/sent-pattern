@@ -26,7 +26,7 @@ class FirstSentencePattern(FirstSentencePatternInterface):
         return self.span_dict
     
     @property
-    def span_str(self) -> Dict[str, Optional[str]]:
+    def spans_to_str(self) -> Dict[str, Optional[str]]:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         self.span_dict_str["S"] = self._subject.span_str(self._subject.root)
@@ -67,7 +67,7 @@ class SecondSentencePattern(SecondSentencePatternInterface):
         return self.span_dict
     
     @property
-    def span_str(self) -> Dict[str, Optional[str]]:
+    def spans_to_str(self) -> Dict[str, Optional[str]]:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         adjective_span = self._adjective.span(self._adjective_root)
@@ -110,7 +110,7 @@ class ThirdSentencePattern(ThirdSentencePatternInterface):
         return self.span_dict
     
     @property
-    def span_str(self) -> Dict[str, Optional[str]]:
+    def spans_to_str(self) -> Dict[str, Optional[str]]:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         object_spans = self._object.span(self._object_root)
@@ -154,7 +154,7 @@ class FourthSentencePattern(FourthSentencePatternInterface):
         return self.span_dict
     
     @property
-    def span_str(self) -> Dict[str, Optional[str]]:
+    def spans_to_str(self) -> Dict[str, Optional[str]]:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         object_spans = self._object.span(self._object_root)
@@ -208,7 +208,7 @@ class FifthSentencePattern(FifthSentencePatternInterface):
         return self.span_dict
     
     @property
-    def span_str(self) -> Dict[str, Optional[str]]:
+    def spans_to_str(self) -> Dict[str, Optional[str]]:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         object_spans = self._object.span(self._object_root)
