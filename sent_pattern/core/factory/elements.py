@@ -48,20 +48,19 @@ class CustomElements(RootElements):
 class ElementsFactory:
 
     @classmethod
-    def make_root_elements(cls, dep_list: DepLemmaListType, lemma_list: DepLemmaListType) -> "RootElements":
+    def make_root_elements(cls, dep_list: DepLemmaListType) -> "RootElements":
         """
         create instance of self
         Parameters
         ----------
         dep_list : type.DepLemmaListType
-        lemma_list : type.DepLemmaListType
 
         Returns
         -------
         RootElements : self
         """
         subject = Subject(dep_list)
-        verb = Verb(dep_list, lemma_list)
+        verb = Verb(dep_list)
         adjective = Adjective(dep_list)
         rootobject = RootObject(dep_list)
 

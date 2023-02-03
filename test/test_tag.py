@@ -22,7 +22,6 @@ def test_sent_pattern():
     text = "he gives me something"
     doc = nlp(text)
     dep_list = tags.create_dep_list(doc)
-    lemma_list = tags.create_lemma_list(doc)
-    elements = tags.create_elements(dep_list, lemma_list)
+    elements = tags.create_elements(dep_list)
     pattern = tags.create_sent_pattern(elements)
     assert pattern.subject.root.text == "he"

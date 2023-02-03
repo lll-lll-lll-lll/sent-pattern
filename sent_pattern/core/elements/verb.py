@@ -20,9 +20,8 @@ class RootVerb(IRootElement):
 class Verb(IRootElement):
     DEP = []
 
-    def __init__(self, dep_list, lemma_list):
+    def __init__(self, dep_list):
         self._dep_list = dep_list
-        self._lemma_list = lemma_list
         self._verb_root = self._get_root_verb()
 
     @property

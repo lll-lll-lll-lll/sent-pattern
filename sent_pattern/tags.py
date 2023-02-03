@@ -24,33 +24,12 @@ def create_dep_list(doc: Doc) -> DepLemmaListType:
     return dict(dep_list)
 
 
-def create_lemma_list(doc: Doc) -> DepLemmaListType:
-    """
-    Put into dict for each lemma of Token
-    Parameters
-    ----------
-    doc: spacy.tokens.Doc
-        doc after nlp initialization
-
-    Returns
-    -------
-    lemma_list: Dict[str, Optional[Token]]
-    """
-    lemma_list = defaultdict(list)
-    for token in doc:
-        lemma_list[token.lemma_].append(token)
-    return dict(lemma_list)
-
-
-def create_elements(dep_list: DepLemmaListType, lemma_list: DepLemmaListType) -> ElementsFactory:
+def create_elements(dep_list: DepLemmaListType) -> ElementsFactory:
     """
     Parameters
     ----------
     dep_list : DepLemmaListType
         Put into dict for each dep of Token
-
-    lemma_list: Dict[str, Optional[Token]]
-        Put into dict for each lemma of Token
 
     Returns
     -------
@@ -58,7 +37,7 @@ def create_elements(dep_list: DepLemmaListType, lemma_list: DepLemmaListType) ->
         classes have subject, verb, adjective, and object
     """
     elements = ElementsFactory.make_root_elements(
-        dep_list=dep_list, lemma_list=lemma_list)
+        dep_list=dep_list)
     return elements
 
 
