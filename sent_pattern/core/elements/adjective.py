@@ -1,5 +1,5 @@
-from sent_pattern.core.interface.Ielement import IRootElement, AdjectiveRootType, AdjectiveSpanStrType, AdjectiveSpanType
-from sent_pattern.core.type import DepLemmaListType
+from sent_pattern.core.interface.Ielement import IRootElement
+from sent_pattern.core.type import AdjectiveRootType, AdjectiveSpanStrType, AdjectiveSpanType, DepLemmaListType
 
 
 class Adjective(IRootElement):

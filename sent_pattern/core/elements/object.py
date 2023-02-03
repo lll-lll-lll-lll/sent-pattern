@@ -1,6 +1,8 @@
 from typing import List,  Optional, Union
-from sent_pattern.core.interface.Ielement import IRootElement, ObjectSpanType,ObjectRootType
+from sent_pattern.core.interface.Ielement import IRootElement
 from sent_pattern.core.type import DepLemmaListType
+from sent_pattern.core.type import ObjectSpanType, ObjectRootType,  DepLemmaListType
+
 
 class RootObject(IRootElement):
     DEP = [

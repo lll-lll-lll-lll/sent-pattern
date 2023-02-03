@@ -1,6 +1,7 @@
-from sent_pattern.core.interface.Ielement import IRootElement, SubjectRootType, SubjectSpanType
+from sent_pattern.core.interface.Ielement import IRootElement
 from sent_pattern.core.type import DepLemmaListType
 from typing import Optional
+from sent_pattern.core.type import SubjectRootType, SubjectSpanType,  DepLemmaListType
 
 
 class Subject(IRootElement):
