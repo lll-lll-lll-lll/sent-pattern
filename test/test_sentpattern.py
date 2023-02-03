@@ -51,34 +51,34 @@ def test_pattern_span(text:str, spans:str):
         data = spans.get("SV")
         s = data[0]
         v = data[1]
-        assert s == p.spans_to_str["S"]
-        assert v == p.spans_to_str["V"]
+        assert s == p.spans_str["S"]
+        assert v == p.spans_str["V"]
     elif spans.get("SVC") != None:
         data = spans.get("SVC")
         s = data[0]
         v = data[1]
         c = data[2]
-        assert s == p.spans_to_str["S"]
-        assert v == p.spans_to_str["V"]
-        assert c == p.spans_to_str["C"]
+        assert s == p.spans_str["S"]
+        assert v == p.spans_str["V"]
+        assert c == p.spans_str["C"]
     elif spans.get("SVO") != None:
         data = spans.get("SVO")
         s = data[0]
         v = data[1]
         o = data[2]
-        assert s == p.spans_to_str["S"]
-        assert v == p.spans_to_str["V"]
-        assert o == p.spans_to_str["O"]
+        assert s == p.spans_str["S"]
+        assert v == p.spans_str["V"]
+        assert o == p.spans_str["O"]
     elif spans.get("SVOO") != None:
         data = spans.get("SVOO")
         s = data[0]
         v = data[1]
         o1 = data[2]
         o = data[3]
-        assert s == p.spans_to_str["S"]
-        assert v == p.spans_to_str["V"]
-        assert o1 == p.spans_to_str["O1"]
-        assert o == p.spans_to_str["O2"]
+        assert s == p.spans_str["S"]
+        assert v == p.spans_str["V"]
+        assert o1 == p.spans_str["O1"]
+        assert o == p.spans_str["O2"]
     elif spans.get("SVOC") != None:
         data = spans.get("SVOC")
         s = data[0]
@@ -86,10 +86,10 @@ def test_pattern_span(text:str, spans:str):
         o = data[2]
         c = data[3]
         print(p)
-        assert s == p.spans_to_str["S"]
-        assert v == p.spans_to_str["V"]
-        assert o == p.spans_to_str["O"]
-        assert c == p.spans_to_str["C"]
+        assert s == p.spans_str["S"]
+        assert v == p.spans_str["V"]
+        assert o == p.spans_str["O"]
+        assert c == p.spans_str["C"]
 
 
         
