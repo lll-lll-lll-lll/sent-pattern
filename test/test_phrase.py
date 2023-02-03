@@ -17,5 +17,5 @@ def test_custom_phrase():
     text = "The Eureka client handles all aspects of service instance registration and deregistration"
     doc = nlp(text)
     dep_list = tags.create_dep_list(doc)
-    custom = ElementsFactory.make_custom_elements(dep_list, lemma_list, doc=doc, option="prep")
+    custom = ElementsFactory.make_custom_elements(dep_list, doc=doc, option="prep")
     phrase = custom.option
