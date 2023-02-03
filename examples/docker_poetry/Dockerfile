@@ -13,35 +13,15 @@ ENV POETRY_HOME=/opt/poetry\
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
     curl \
-    build-essential \
-    git \
-    cmake 
+    build-essential 
 
 RUN pip install --upgrade pip \
     pip install --upgrade setuptools \
     pip install poetry
 
 COPY ./ .
-RUN poetry install
+RUN poetry install --no-dev
 
+EXPOSE 8080
 
-RUN mv internal/ /usr/local/lib/python3.10/site-packages
-
-RUN python -m compileall main.py && mv __pycache__/main.cpython-310.pyc ./
-
-CMD ["python","main.cpython-310.pyc"]
-
-###
-# Deploy
-###
-FROM python:3.10-slim as prod
-
-WORKDIR /src
-
-COPY --from=builder /usr/local/lib/python3.10/site-packages /root/.local/lib/python3.10/site-packages
-
-COPY --from=builder ./src/main.cpython-310.pyc ./src
-
-EXPOSE 50051
-
-CMD ["python", "main.cpython-310.pyc"] 
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

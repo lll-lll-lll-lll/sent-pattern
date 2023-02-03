@@ -13,6 +13,9 @@ en_core_web_lg = {url = "https://github.com/explosion/spacy-models/releases/down
 # en_core_web_trf = {url ="https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.5.0/en_core_web_trf-3.5.0-py3-none-any.whl"}
 spacy = "3.4.4"
 sent-pattern = "0.0.8"
+fastapi = "0.75.2"
+python-dotenv = "^0.21.1"
+uvicorn = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 
