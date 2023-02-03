@@ -1,6 +1,6 @@
 __pycache__/
 .vscode/
-.venv/
+.dev-venv/
 build/
 sent_pattern.egg-info/
 dist/
