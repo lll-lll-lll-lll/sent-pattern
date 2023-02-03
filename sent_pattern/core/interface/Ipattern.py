@@ -23,7 +23,7 @@ class IBaseSentencePattern(metaclass=ABCMeta):
     
     @property
     @abstractmethod
-    def spans_to_str(self) -> Dict[str, List[str]]:
+    def spans_str(self) -> Dict[str, List[str]]:
         """
         span property str
         """

@@ -26,7 +26,7 @@ class FirstSentencePattern(IBaseSentencePattern):
         return self.span_dict
     
     @property
-    def spans_to_str(self) -> FirstSpanDictTypeStr:
+    def spans_str(self) -> FirstSpanDictTypeStr:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         subject_span = self._subject.span(self._subject.root)
@@ -73,7 +73,7 @@ class SecondSentencePattern(IBaseSentencePattern):
         return self.span_dict
     
     @property
-    def spans_to_str(self) -> SecondSpanDictTypeStr:
+    def spans_str(self) -> SecondSpanDictTypeStr:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         subject_span = self._subject.span(self._subject.root)
@@ -123,7 +123,7 @@ class ThirdSentencePattern(IBaseSentencePattern):
         return self.span_dict
     
     @property
-    def spans_to_str(self) -> ThirdSpanDictTypeStr:
+    def spans_str(self) -> ThirdSpanDictTypeStr:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         subject_span = self._subject.span(self._subject.root)
@@ -173,7 +173,7 @@ class FourthSentencePattern(IBaseSentencePattern):
         return self.span_dict
     
     @property
-    def spans_to_str(self) -> FourthSpanDictTypeStr:
+    def spans_str(self) -> FourthSpanDictTypeStr:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         subject_span = self._subject.span(self._subject.root)
@@ -233,7 +233,7 @@ class FifthSentencePattern(IBaseSentencePattern):
         return self.span_dict
     
     @property
-    def spans_to_str(self) -> FifthSpanDictTypeStr:
+    def spans_str(self) -> FifthSpanDictTypeStr:
         if self._is_element_in_span_dict(self.span_dict_str):
             return self.span_dict_str
         subject_span = self._subject.span(self._subject.root)
