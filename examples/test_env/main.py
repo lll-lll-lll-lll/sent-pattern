@@ -1,7 +1,9 @@
 import spacy
-nlp = spacy.load("en_core_web_lg")
+from sent_pattern import tags
+nlp = spacy.load("en_core_web_sm")
 nlp.add_pipe("sent_pattern")
-doc = nlp("The Eureka client handles all aspects of service instance registration and deregistration")
-get_ext_tuple = doc.get_extension("sentpattern")
-pattern = doc._.sentpattern
-print(doc._.sentpattern.subject.root.text)
+doc = nlp("I like you")
+dep_list = tags.create_dep_list(doc)
+elements  = tags.create_elements(dep_list=dep_list)
+p  = tags.create_sent_pattern(elements=elements)
+print(p.spans_to_str)
