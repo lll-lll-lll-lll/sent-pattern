@@ -7,6 +7,8 @@ clean:
 	rm -rf .venv/
 	rm -rf build
 	rm -rf dist
+	rm -rf sent_pattern.egg-info/
+	rm -rf .pytest_cache/
 
 build:
 	python setup.py sdist
