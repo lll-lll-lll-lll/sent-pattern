@@ -67,9 +67,9 @@ class ElementsFactory:
         return RootElements(subject, verb, adjective, rootobject)
     
     @classmethod
-    def make_custom_elements(cls, dep_list: DepLemmaListType, lemma_list: DepLemmaListType, doc:Doc,  option:str) -> "CustomElements":
+    def make_custom_elements(cls, dep_list: DepLemmaListType, doc:Doc,  option:str) -> "CustomElements":
         subject = Subject(dep_list)
-        verb = Verb(dep_list, lemma_list)
+        verb = Verb(dep_list)
         adjective = Adjective(dep_list)
         rootobject = RootObject(dep_list)
 
