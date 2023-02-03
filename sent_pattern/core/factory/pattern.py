@@ -1,14 +1,13 @@
-from sent_pattern.core.interface.Ielement import AdjectiveInterface,ObjectInterface
-from ..interface.Ipattern import BaseSentencePatternInterface, FifthSentencePatternInterface, FirstSentencePatternInterface, FourthSentencePatternInterface, SecondSentencePatternInterface, SentencePatternInterface, ThirdSentencePatternInterface
-from ..interface.Ielements import  ElementsInterface
 from ..elements.patterns import FirstSentencePattern, SecondSentencePattern, ThirdSentencePattern, FourthSentencePattern, FifthSentencePattern
 from spacy.symbols import ADJ,nsubj
 from typing import TypeAlias
+from sent_pattern.core.elements import Adjective,RootObject, RootElements
 
-SentencePatternType: TypeAlias = FirstSentencePatternInterface | SecondSentencePatternInterface | ThirdSentencePatternInterface | FourthSentencePatternInterface | FifthSentencePatternInterface
 
-class SentencePattern(SentencePatternInterface):
-    def __init__(self, elements: ElementsInterface):
+SentencePatternType: TypeAlias = FirstSentencePattern | SecondSentencePattern | ThirdSentencePattern | FourthSentencePattern | FifthSentencePattern
+
+class SentencePattern:
+    def __init__(self, elements: RootElements):
         self.elements = elements
 
     @property
@@ -55,7 +54,7 @@ class SentencePattern(SentencePatternInterface):
             pattern = FirstSentencePattern(subject=subject, verb=verb)
         return pattern
 
-    def is_fifth_sentence(self, adjective: AdjectiveInterface, object: ObjectInterface) -> bool:
+    def is_fifth_sentence(self, adjective: Adjective, object: RootObject) -> bool:
         if adjective.have_root == False:
             return False
         if adjective.root.pos == ADJ:

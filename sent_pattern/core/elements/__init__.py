@@ -6,3 +6,4 @@ from .adjective import Adjective as Adjective
 from .subject import Subject as Subject
 from .verb import Verb as Verb
 from .object import RootObject as RootObject
+from .elements import RootElements as RootElements

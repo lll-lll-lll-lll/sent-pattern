@@ -39,7 +39,6 @@ pattern_test_data = make_test_data(test_data["texts"], test_data["pattern"])
 def test_pattern(text:str, pattern:str):
     doc = nlp(text)
     p = doc._.sentpattern
-    print(p.spans)
     assert p.abbreviation == pattern
 
 

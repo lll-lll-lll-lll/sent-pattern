@@ -1,10 +1,8 @@
-from typing import List, Dict, Optional, Union
-from spacy.tokens import Token
-from sent_pattern.core.interface.Ielement import ObjectSpanType,ObjectRootType
-from sent_pattern.core.interface.Ielements import ObjectInterface
+from typing import List,  Optional, Union
+from sent_pattern.core.interface.Ielement import IRootElement, ObjectSpanType,ObjectRootType
 from sent_pattern.core.type import DepLemmaListType
 
-class RootObject(ObjectInterface):
+class RootObject(IRootElement):
     DEP = [
         "pobj",
         "obj",

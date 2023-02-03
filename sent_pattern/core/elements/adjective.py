@@ -1,9 +1,8 @@
-from sent_pattern.core.interface.Ielement import AdjectiveRootType, AdjectiveSpanStrType, AdjectiveSpanType
+from sent_pattern.core.interface.Ielement import IRootElement, AdjectiveRootType, AdjectiveSpanStrType, AdjectiveSpanType
 from sent_pattern.core.type import DepLemmaListType
-from ..interface.Ielements import AdjectiveInterface
 
 
-class Adjective(AdjectiveInterface):
+class Adjective(IRootElement):
     DEP = [
         "acomp",
         "ccomp",
@@ -25,6 +24,12 @@ class Adjective(AdjectiveInterface):
 
     @property
     def root(self) -> AdjectiveRootType:
+        """
+        Return Adjective (C)
+
+        Returns:
+            - Adjective(Token) | ""(str)
+        """
         return self._adjective_root
 
     def _get_root(self) -> AdjectiveRootType:
@@ -44,6 +49,13 @@ class Adjective(AdjectiveInterface):
 
     @property
     def have_root(self) -> bool:
+        """Whether or not have an adjective
+        Params:
+
+        Returns:
+            - True: has adjective
+            - False: not adjective
+        """
         return bool(self.root)
     
     def span(self,root:AdjectiveRootType) -> AdjectiveSpanType:

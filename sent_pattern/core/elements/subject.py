@@ -1,10 +1,9 @@
-from sent_pattern.core.interface.Ielement import SubjectRootType, SubjectSpanType
+from sent_pattern.core.interface.Ielement import IRootElement, SubjectRootType, SubjectSpanType
 from sent_pattern.core.type import DepLemmaListType
-from ..interface.Ielements import SubjectInterface
 from typing import Optional
 
 
-class Subject(SubjectInterface):
+class Subject(IRootElement):
     DEP = [
         "nsubj",
         "nsubjpass",
@@ -18,6 +17,13 @@ class Subject(SubjectInterface):
 
     @property
     def root(self) -> SubjectRootType:
+        """
+        return subject
+        Params:
+
+        Returns:
+            - _get_root(self): (SubjectRootType)
+        """
         return self._subject_root
 
     @property
@@ -38,10 +44,16 @@ class Subject(SubjectInterface):
                 return subj
     
     def span(self,root:SubjectRootType) -> SubjectSpanType:
+        """
+        Span summarizing subtrees of elements
+        """
         return self._get_span(root)
     
     def _get_span(self, root:SubjectRootType) -> SubjectSpanType:
         return [token for token in root.subtree]
     
     def span_str(self, spans:SubjectSpanType) -> str:
+        """
+        span property str
+        """
         return " ".join([token.text for token in spans])

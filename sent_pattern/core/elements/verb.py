@@ -1,9 +1,9 @@
 from typing import Any, List
 from spacy.tokens import Token
-from ..interface.Ielements import VerbInterface
+from sent_pattern.core.interface.Ielement import IRootElement
 
 
-class RootVerb(VerbInterface):
+class RootVerb(IRootElement):
     def __init__(self, verb: Token):
         self.__root = verb
         if not verb:
@@ -17,7 +17,7 @@ class RootVerb(VerbInterface):
         return self.root.text
 
 
-class Verb(VerbInterface):
+class Verb(IRootElement):
     DEP = []
 
     def __init__(self, dep_list, lemma_list):

@@ -1,11 +1,7 @@
+from sent_pattern.core.elements.elements import RootElements
 from sent_pattern.core.elements.sub.phrase import PrepPhrase
-from sent_pattern.core.interface.Ielement import AdjectiveInterface, ObjectInterface, SubjectInterface, VerbInterface
 from sent_pattern.core.type import DepLemmaListType
-from ..elements import Adjective
-from ..elements import RootObject
-from ..elements import Subject
-from ..elements import Verb
-from ..interface.Ielements import ElementsFactoryInterface,ElementsInterface
+from ..elements import Adjective,Subject,RootObject,Verb
 from spacy.tokens import Doc
 from enum import Enum
 
@@ -21,28 +17,12 @@ class ElementOption(Enum):
     def str_list(cls) -> str:
         return ", ".join([e.value for e in ElementOption])
 
-class RootElements(ElementsInterface):
-    """
-    this class have just subject, verb, adjective and object
-    """
-    def __init__(self, 
-            subject: SubjectInterface, 
-            verb: VerbInterface, 
-            adjective: AdjectiveInterface, 
-            rootobject: ObjectInterface):
-
-        self.subject = subject
-        self.verb = verb
-        self.adjective = adjective
-        self.rootobject = rootobject
-
-
 class CustomElements(RootElements):
     def __init__(self,
-            subject: SubjectInterface, 
-            verb: VerbInterface, 
-            adjective: AdjectiveInterface, 
-            rootobject: ObjectInterface, 
+            subject: Subject, 
+            verb: Verb, 
+            adjective: Adjective, 
+            rootobject: RootObject, 
             option: ElementOption):
 
         super().__init__(subject, verb, adjective, rootobject)
@@ -65,10 +45,10 @@ class CustomElements(RootElements):
         return self._option
 
 
-class ElementsFactory(ElementsFactoryInterface):
+class ElementsFactory:
 
     @classmethod
-    def make_root_elements(cls, dep_list: DepLemmaListType, lemma_list: DepLemmaListType) -> "ElementsInterface":
+    def make_root_elements(cls, dep_list: DepLemmaListType, lemma_list: DepLemmaListType) -> "RootElements":
         """
         create instance of self
         Parameters

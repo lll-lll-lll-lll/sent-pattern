@@ -1,22 +1,21 @@
-from ..interface.Ipattern import (FirstSentencePatternInterface, FifthSentencePatternInterface, FourthSentencePatternInterface,
-                                  SecondSentencePatternInterface, ThirdSentencePatternInterface)
-from ..interface.Ielement import SubjectInterface, VerbInterface, AdjectiveInterface, ObjectInterface
+from sent_pattern.core.elements import Subject, Verb, RootObject, Adjective
+from ..interface.Ipattern import IBaseSentencePattern
 from typing import TypeAlias, Union, List, Dict,Optional
 from spacy.tokens import Token
 
 FirstSpanDictType: TypeAlias = Dict[str, Union[Token, List[Token]]]
 FirstSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
-class FirstSentencePattern(FirstSentencePatternInterface):
+class FirstSentencePattern(IBaseSentencePattern):
     span_dict: FirstSpanDictType = dict()
     span_dict_str: FirstSpanDictTypeStr = dict()
-    def __init__(self, subject: SubjectInterface, verb: VerbInterface):
+    def __init__(self, subject: Subject, verb: Verb):
         self._subject = subject
         self._verb = verb
 
     @property
-    def subject(self) -> "SubjectInterface": return self._subject
+    def subject(self) -> "Subject": return self._subject
     @property
-    def verb(self) -> "VerbInterface": return self._verb
+    def verb(self) -> "Verb": return self._verb
     
     @property
     def spans(self) -> FirstSpanDictType:
@@ -39,13 +38,17 @@ class FirstSentencePattern(FirstSentencePatternInterface):
         if len(dic) == 0:
             return False
         return True
+    
+    @property
+    def abbreviation(self) -> str:
+        return "SV"
 
 SecondSpanDictType: TypeAlias = Dict[str, List[Optional[Union[Token, str, List[Token]]]]]
 SecondSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
-class SecondSentencePattern(SecondSentencePatternInterface):
+class SecondSentencePattern(IBaseSentencePattern):
     span_dict:SecondSpanDictType = dict()
     span_dict_str:SecondSpanDictTypeStr = dict()
-    def __init__(self, subject: SubjectInterface, verb: VerbInterface, adjective: AdjectiveInterface):
+    def __init__(self, subject: Subject, verb: Verb, adjective: Adjective):
         self._subject = subject
         self._verb = verb
         self._adjective = adjective
@@ -54,11 +57,11 @@ class SecondSentencePattern(SecondSentencePatternInterface):
         self._verb_root = verb.root
 
     @property
-    def subject(self) -> "SubjectInterface": return self._subject
+    def subject(self) -> "Subject": return self._subject
     @property
-    def verb(self) -> "VerbInterface": return self._verb
+    def verb(self) -> "Verb": return self._verb
     @property
-    def adjective(self) -> "AdjectiveInterface": return self._adjective
+    def adjective(self) -> "Adjective": return self._adjective
     
     @property
     def spans(self) -> SecondSpanDictType:
@@ -84,14 +87,18 @@ class SecondSentencePattern(SecondSentencePatternInterface):
         if len(dic) == 0:
             return False
         return True
+    
+    @property
+    def abbreviation(self) -> str:
+        return "SVC"
 
 
 ThirdSpanDictType: TypeAlias = Dict[str, List[Optional[Union[Token, str, List[Token]]]]]
 ThirdSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
-class ThirdSentencePattern(ThirdSentencePatternInterface):
+class ThirdSentencePattern(IBaseSentencePattern):
     span_dict:ThirdSpanDictType = dict()
     span_dict_str:ThirdSpanDictTypeStr = dict()
-    def __init__(self, subject: SubjectInterface, verb: VerbInterface, object: ObjectInterface):
+    def __init__(self, subject: Subject, verb: Verb, object: RootObject):
         self._subject = subject
         self._verb = verb
         self._object = object
@@ -100,11 +107,11 @@ class ThirdSentencePattern(ThirdSentencePatternInterface):
         self._verb_root = verb.root
 
     @property
-    def subject(self) -> "SubjectInterface": return self._subject
+    def subject(self) -> "Subject": return self._subject
     @property
-    def verb(self) -> "VerbInterface": return self._verb
+    def verb(self) -> "Verb": return self._verb
     @property
-    def object(self) -> "ObjectInterface": return self._object
+    def object(self) -> "RootObject": return self._object
 
     @property
     def spans(self) -> ThirdSpanDictType:
@@ -130,13 +137,17 @@ class ThirdSentencePattern(ThirdSentencePatternInterface):
         if len(dic) == 0:
             return False
         return True
+    
+    @property
+    def abbreviation(self) -> str:
+        return "SVO"
 
 FourthSpanDictType: TypeAlias = Dict[str, Optional[List[Union[List[Token], Token]]]]
 FourthSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
-class FourthSentencePattern(FourthSentencePatternInterface):
+class FourthSentencePattern(IBaseSentencePattern):
     span_dict:FourthSpanDictType = dict()
     span_dict_str:FourthSpanDictTypeStr = dict()
-    def __init__(self, subject: SubjectInterface, verb: VerbInterface, object: ObjectInterface):
+    def __init__(self, subject: Subject, verb: Verb, object: RootObject):
         self._subject = subject
         self._verb = verb
         self._object = object
@@ -145,11 +156,11 @@ class FourthSentencePattern(FourthSentencePatternInterface):
         self._verb_root = verb.root
 
     @property
-    def subject(self) -> "SubjectInterface": return self._subject
+    def subject(self) -> "Subject": return self._subject
     @property
-    def verb(self) -> "VerbInterface": return self._verb
+    def verb(self) -> "Verb": return self._verb
     @property
-    def object(self) -> "ObjectInterface": return self._object
+    def object(self) -> "RootObject": return self._object
     
     @property
     def spans(self) -> FourthSpanDictType:
@@ -177,17 +188,21 @@ class FourthSentencePattern(FourthSentencePatternInterface):
         if len(dic) == 0:
             return False
         return True
+    
+    @property
+    def abbreviation(self) -> str:
+        return "SVOO"
 
 FifthSpanDictType: TypeAlias = Dict[str, Optional[List[Union[List[Token], Token]]]]
 FifthSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
-class FifthSentencePattern(FifthSentencePatternInterface):
+class FifthSentencePattern(IBaseSentencePattern):
     span_dict = dict()
     span_dict_str = dict()
     def __init__(self,
-                 subject: SubjectInterface,
-                 verb: VerbInterface,
-                 object: ObjectInterface,
-                 adjective: AdjectiveInterface):
+                 subject: Subject,
+                 verb: Verb,
+                 object: RootObject,
+                 adjective: Adjective):
 
         self._subject = subject
         self._verb = verb
@@ -199,13 +214,13 @@ class FifthSentencePattern(FifthSentencePatternInterface):
         self._adjective_root = adjective.root
 
     @property
-    def subject(self) -> "SubjectInterface": return self._subject
+    def subject(self) -> "Subject": return self._subject
     @property
-    def verb(self) -> "VerbInterface": return self._verb
+    def verb(self) -> "Verb": return self._verb
     @property
-    def object(self) -> "ObjectInterface": return self._object
+    def object(self) -> "RootObject": return self._object
     @property
-    def adjective(self) -> "AdjectiveInterface": return self._adjective
+    def adjective(self) -> "Adjective": return self._adjective
     
     @property
     def spans(self) -> FifthSpanDictType:
@@ -234,3 +249,7 @@ class FifthSentencePattern(FifthSentencePatternInterface):
         if len(dic) == 0:
             return False
         return True
+    
+    @property
+    def abbreviation(self) -> str:
+        return "SVOC"
