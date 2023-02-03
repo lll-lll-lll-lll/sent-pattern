@@ -1,10 +1,9 @@
 from sent_pattern.core.elements import Subject, Verb, RootObject, Adjective
+from sent_pattern.core.type import FifthSpanDictType, FifthSpanDictTypeStr, FirstSpanDictType, FirstSpanDictTypeStr, FourthSpanDictType, FourthSpanDictTypeStr, SecondSpanDictType, SecondSpanDictTypeStr, ThirdSpanDictType, ThirdSpanDictTypeStr
 from ..interface.Ipattern import IBaseSentencePattern
-from typing import TypeAlias, Union, List, Dict,Optional
-from spacy.tokens import Token
+from typing import  Union
 
-FirstSpanDictType: TypeAlias = Dict[str, Union[Token, List[Token]]]
-FirstSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
+
 class FirstSentencePattern(IBaseSentencePattern):
     span_dict: FirstSpanDictType = dict()
     span_dict_str: FirstSpanDictTypeStr = dict()
@@ -43,8 +42,7 @@ class FirstSentencePattern(IBaseSentencePattern):
     def abbreviation(self) -> str:
         return "SV"
 
-SecondSpanDictType: TypeAlias = Dict[str, List[Optional[Union[Token, str, List[Token]]]]]
-SecondSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
+
 class SecondSentencePattern(IBaseSentencePattern):
     span_dict:SecondSpanDictType = dict()
     span_dict_str:SecondSpanDictTypeStr = dict()
@@ -93,8 +91,7 @@ class SecondSentencePattern(IBaseSentencePattern):
         return "SVC"
 
 
-ThirdSpanDictType: TypeAlias = Dict[str, List[Optional[Union[Token, str, List[Token]]]]]
-ThirdSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
+
 class ThirdSentencePattern(IBaseSentencePattern):
     span_dict:ThirdSpanDictType = dict()
     span_dict_str:ThirdSpanDictTypeStr = dict()
@@ -142,8 +139,7 @@ class ThirdSentencePattern(IBaseSentencePattern):
     def abbreviation(self) -> str:
         return "SVO"
 
-FourthSpanDictType: TypeAlias = Dict[str, Optional[List[Union[List[Token], Token]]]]
-FourthSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
+
 class FourthSentencePattern(IBaseSentencePattern):
     span_dict:FourthSpanDictType = dict()
     span_dict_str:FourthSpanDictTypeStr = dict()
@@ -193,8 +189,7 @@ class FourthSentencePattern(IBaseSentencePattern):
     def abbreviation(self) -> str:
         return "SVOO"
 
-FifthSpanDictType: TypeAlias = Dict[str, Optional[List[Union[List[Token], Token]]]]
-FifthSpanDictTypeStr: TypeAlias = Dict[str, Optional[str]]
+
 class FifthSentencePattern(IBaseSentencePattern):
     span_dict = dict()
     span_dict_str = dict()
