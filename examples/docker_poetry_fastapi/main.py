@@ -25,6 +25,6 @@ async def sentpattern(req: SentPatternReq):
     dep_list = tags.create_dep_list(doc)
     elements  = tags.create_elements(dep_list=dep_list)
     p  = tags.create_sent_pattern(elements=elements)
-    pattern = p.pattern_type
+    pattern = p.type
     return SentPatternRes(pattern=pattern.__class__.__name__, abbreviation=pattern.abbreviation)
     

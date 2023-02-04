@@ -27,5 +27,8 @@ def test_pattern(text:str, pattern:str):
     doc = nlp(text)
     ps = pattern.split()
     patterns = doc._.sentpattern
+    if len(list(doc.sents)) == 1:
+        assert patterns.abbreviation == ps[0]
+        return
     for s, p in zip(ps, patterns):
-        assert p.pattern_type.abbreviation == s
+        assert p.abbreviation == s

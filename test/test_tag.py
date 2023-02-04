@@ -24,4 +24,4 @@ def test_sent_pattern():
     dep_list = tags.create_dep_list(doc)
     elements = tags.create_elements(dep_list)
     pattern = tags.create_sent_pattern(elements)
-    assert pattern.subject.root.text == "he"
+    assert pattern.type.subject.root.text == "he"
