@@ -7,19 +7,19 @@ from spacy.language import Language
 
 
 def get_sentpattern_type(doc: Doc)-> Union[IBaseSentencePattern,List[IBaseSentencePattern]]:
-    factories = []
+    pattern_docs = []
     if len(list(doc.sents)) > 1:
         for d in doc.sents:
             dep_list = create_dep_list(d)
             elements = create_elements(dep_list)
-            factory = SentencePatternDoc(elements)
-            factories.append(factory)
-        return factories
+            pattern_doc = SentencePatternDoc(elements)
+            pattern_docs.append(pattern_doc.type)
+        return pattern_docs
     else:
         dep_list = create_dep_list(doc)
         elements = create_elements(dep_list)
-        factory = SentencePatternDoc(elements)
-    return factory.pattern_type
+        pattern_doc = SentencePatternDoc(elements)
+    return pattern_doc.type
 
 @Language.component("sent_pattern")
 def create_sentence_pattern(doc: Doc):
