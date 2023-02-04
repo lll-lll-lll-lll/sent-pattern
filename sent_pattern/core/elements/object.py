@@ -27,6 +27,18 @@ class RootObject(IRootElement):
     @property
     def object_num(self) -> int:
         return len(self.root)
+    
+    def span(self,root:ObjectRootType) ->ObjectSpanType: 
+        return self._get_span(root)
+    
+    def span_str(self, spans: ObjectSpanType) -> Optional[Union[List[str],str]]:
+        if len(spans) == 0:
+            return
+        elif len(spans) == 1:
+            return " ".join([token.text for token in spans[0]])
+        elif len(spans) == 2:
+            return [" ".join([token.text for token in spans[0]])," ".join([token.text for token in spans[1]])]
+        return
 
     def _get_root(self) -> ObjectRootType:
         objects = []
@@ -37,9 +49,6 @@ class RootObject(IRootElement):
                 objects.append(self._dep_list[object_dep][0])
         return objects
 
-    def span(self,root:ObjectRootType) ->ObjectSpanType:
-        return self._get_span(root)
-    
     def _get_span(self, root:ObjectRootType) ->ObjectSpanType:
         if len(root) == 0:
             return
@@ -49,12 +58,5 @@ class RootObject(IRootElement):
             return [[token for token in root[0].subtree], [token for token in root[1].subtree]]
         return
     
-    def span_str(self, spans: ObjectSpanType) -> Optional[Union[List[str],str]]:
-        if len(spans) == 0:
-            return
-        elif len(spans) == 1:
-            return " ".join([token.text for token in spans[0]])
-        elif len(spans) == 2:
-            return [" ".join([token.text for token in spans[0]])," ".join([token.text for token in spans[1]])]
-        return
+    
         

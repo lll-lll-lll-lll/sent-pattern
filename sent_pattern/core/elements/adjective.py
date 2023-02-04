@@ -19,10 +19,6 @@ class Adjective(IRootElement):
         self._adjective_root = self._get_root()
     
     @property
-    def dep_list(self) -> DepLemmaListType:
-        return self._dep_list
-
-    @property
     def root(self) -> AdjectiveRootType:
         """
         Return Adjective (C)
@@ -31,6 +27,25 @@ class Adjective(IRootElement):
             - Adjective(Token) | ""(str)
         """
         return self._adjective_root
+
+    def span(self,root:AdjectiveRootType) -> AdjectiveSpanType: return self._get_span(root)
+    
+    def span_str(self, spans:AdjectiveSpanType) -> AdjectiveSpanStrType:
+        if len(spans) == 0:
+            return
+        else:
+            return " ".join([token.text for token in spans if token.dep_ != "nsubj"])
+    
+    @property
+    def have_root(self) -> bool:
+        """Whether or not have an adjective
+        Params:
+
+        Returns:
+            - True: has adjective
+            - False: not adjective
+        """
+        return bool(self.root)
 
     def _get_root(self) -> AdjectiveRootType:
         """
@@ -47,28 +62,10 @@ class Adjective(IRootElement):
                 return adjective[0]
         return ""
 
-    @property
-    def have_root(self) -> bool:
-        """Whether or not have an adjective
-        Params:
-
-        Returns:
-            - True: has adjective
-            - False: not adjective
-        """
-        return bool(self.root)
-    
-    def span(self,root:AdjectiveRootType) -> AdjectiveSpanType:
-        return self._get_span(root)
-    
     def _get_span(self, root:AdjectiveRootType)->AdjectiveSpanType:
         if type(root) == str:
             return
         adje_list = [token for token in root.subtree]
         return adje_list
 
-    def span_str(self, spans:AdjectiveSpanType) -> AdjectiveSpanStrType:
-        if len(spans) == 0:
-            return
-        else:
-            return " ".join([token.text for token in spans if token.dep_ != "nsubj"])
+    
