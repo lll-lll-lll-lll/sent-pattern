@@ -39,7 +39,7 @@ print(pattern.verb.root)
 
 ## Cases without pipeline
 If you want to know the sentence pattern without using components, we recommend using method of tags module.
-The following three methods must be followed in sequence.
+The following three methods must be followed in order.
  `create_dep_list`, `create_elements`, `create_sent_pattern`.
 execute in order to generate the sentpattern class.<br>
 **merit**: can get sentpattern type
