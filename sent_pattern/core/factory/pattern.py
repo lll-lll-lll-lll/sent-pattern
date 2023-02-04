@@ -6,7 +6,7 @@ from sent_pattern.core.elements import Adjective,RootObject, RootElements
 
 SentencePatternType: TypeAlias = FirstSentencePattern | SecondSentencePattern | ThirdSentencePattern | FourthSentencePattern | FifthSentencePattern
 
-class SentencePattern:
+class SentencePatternDoc:
     def __init__(self, elements: RootElements):
         self.elements = elements
 
