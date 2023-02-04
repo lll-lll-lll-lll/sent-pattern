@@ -1,9 +1,12 @@
 ## Sent Pattern
 This package categorizes English sentences into one of five basic sentence patterns and identifies the subject, verb, object, and other components. The five basic sentence patterns are based on C. T. Onions's Advanced English Syntax and are frequently used when teaching English in Japan.<br>
 [Influence of His Grammar on English Language Education in Japan ](https://www.intcul.tohoku.ac.jp/ronshu/vol17/12.pdf)
+#### [Universe Project](https://spacy.io/universe/project/sent-pattern)
 
-#### This is Spacy [Universe Project](https://spacy.io/universe/project/sent-pattern)
 ## Quick Start
+### [fastapi docker Example Code](./examples/docker_poetry_fastapi/)
+
+## How To Use
 
 ### Installation
 ```bash
@@ -39,23 +42,21 @@ print(pattern.verb.root)
 ```py
 import spacy
 from sent_pattern import tags
-
-nlp = spacy.load("en_core_web_md")
-text = "he gives me something"
-doc = nlp(text)
-
-
+nlp = spacy.load("en_core_web_sm")
+doc = nlp("he gives me something")
 dep_list = tags.create_dep_list(doc)
-elements = tags.create_elements(dep_list)
-pattern = tags.create_sent_pattern(elements)
-
+elements  = tags.create_elements(dep_list=dep_list)
+p  = tags.create_sent_pattern(elements=elements)
+pattern = p.pattern_type
+# FourthSentencePattern(class)
 print(pattern.subject.root.text)
 # he (string)
+print(pattern.verb.root)
+# gives(spacy.Token)
 print(dep_list)
 # {'ROOT': [gives], 'dative': [me], 'dobj': [something], 'nsubj': [he]}
 print(pattern.abbreviation)
-# "SVOO"
-
+# SVO (str)
 
 ```
 
