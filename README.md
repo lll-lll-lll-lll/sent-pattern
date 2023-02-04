@@ -37,12 +37,18 @@ print(pattern.verb.root)
 
 
 
-#### If you want to know the sentence pattern without using components, we recommend using method directly
+## Cases without pipeline
+If you want to know the sentence pattern without using components, we recommend using method of tags module.
+The following three methods must be followed in sequence.
+ `create_dep_list`, `create_elements`, `create_sent_pattern`.
+execute in order to generate the sentpattern class.<br>
+**merit**: can get sentpattern type
+
 
 ```py
 import spacy
 from sent_pattern import tags
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_lg")
 doc = nlp("he gives me something")
 dep_list = tags.create_dep_list(doc)
 elements  = tags.create_elements(dep_list=dep_list)
@@ -62,7 +68,7 @@ print(pattern.abbreviation)
 
 how to get prep phrase
 ```py
-nlp = spacy.load("en_core_web_md")
+nlp = spacy.load("en_core_web_lg")
 
 text = "The Eureka client handles all aspects of service instance registration and deregistration"
 doc =  nlp(text)
