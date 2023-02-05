@@ -1,63 +1,7 @@
-from sent_pattern.core.elements.elements import RootElements
+from sent_pattern.core.elements.elements import CustomElements, ElementOption, RootElements
 from sent_pattern.core.elements.sub.phrase import PrepPhrase
 from sent_pattern.core.type import DepLemmaListType
 from ..elements import Adjective,Subject,RootObject,Verb
-from spacy.tokens import Doc
-from enum import Enum
-
-class ElementOption(Enum):
-    Prep = "prep"
-    Relcl = "relcl"
-
-    @classmethod
-    def has_option(cls, option: str) -> bool:
-        """returns a bool indicating whether the option is configurable or not
-
-        Args:
-            option (str): option str (etc. prep, relcl)
-
-        Returns:
-            bool: whether the option is configurable or not
-        """
-        
-        return option in cls._value2member_map_
-
-    @classmethod
-    def str_list(cls) -> str:
-        """returns a list of what can be set as options
-
-        Returns:
-            str: list of options
-        """
-        return ", ".join([e.value for e in ElementOption])
-
-class CustomElements(RootElements):
-    def __init__(self,
-            subject: Subject, 
-            verb: Verb, 
-            adjective: Adjective, 
-            rootobject: RootObject, 
-            option: ElementOption):
-
-        super().__init__(subject, verb, adjective, rootobject)
-        self._option = self._is_valid_option(option)
-
-    def _is_valid_option(self, option_str: str) -> str:
-        try:
-            if ElementOption.has_option(option_str):
-                return option_str
-            else:
-                raise ValueError
-        except ValueError:
-            raise ValueError(f"invalid option. valid option: [{ElementOption.str_list()}]")
-    
-    @property
-    def option(self) -> str:
-        """
-        option property is freely configurable properties
-        """
-        return self._option
-
 
 class ElementsFactory:
 
@@ -81,13 +25,21 @@ class ElementsFactory:
         return RootElements(subject, verb, adjective, rootobject)
     
     @classmethod
-    def make_custom_elements(cls, dep_list: DepLemmaListType, doc:Doc,  option:str) -> "CustomElements":
+    def make_custom_elements(cls, dep_list: DepLemmaListType,  opt:str = "all") -> "CustomElements":
+        """_summary_
+
+        Args:
+            dep_list (DepLemmaListType): dict for each dep of Token
+            doc (Doc): spacy.tokens.Doc
+            option (str): _description_
+
+        Returns:
+            CustomElements: _description_
+        """        
         subject = Subject(dep_list)
         verb = Verb(dep_list)
         adjective = Adjective(dep_list)
         rootobject = RootObject(dep_list)
-
-        prep = PrepPhrase()
-        doc = prep.register_prep_phrase(doc)
-        custom_elements = CustomElements(subject, verb, adjective, rootobject, option=option)
+        options = ElementOption(option=opt)
+        custom_elements = CustomElements(subject, verb, adjective, rootobject, option=options)
         return custom_elements
