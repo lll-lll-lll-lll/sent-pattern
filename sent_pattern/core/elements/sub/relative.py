@@ -8,7 +8,7 @@ class RelativeClause():
         self.root = self._get_relative(doc)
 
     def _get_relative(self, doc: Doc) -> List[Span]:
-        spans:List[Span] = []
+        spans = []
         for token in doc:
             if token.dep_ == "relcl":
                 subtree = [t for t in token.subtree]
