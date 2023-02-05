@@ -10,11 +10,25 @@ class ElementOption(Enum):
     Relcl = "relcl"
 
     @classmethod
-    def has_option(cls, value: str) -> bool:
-        return value in cls._value2member_map_
+    def has_option(cls, option: str) -> bool:
+        """returns a bool indicating whether the option is configurable or not
+
+        Args:
+            option (str): option str (etc. prep, relcl)
+
+        Returns:
+            bool: whether the option is configurable or not
+        """
+        
+        return option in cls._value2member_map_
 
     @classmethod
     def str_list(cls) -> str:
+        """returns a list of what can be set as options
+
+        Returns:
+            str: list of options
+        """
         return ", ".join([e.value for e in ElementOption])
 
 class CustomElements(RootElements):
