@@ -1,3 +1,4 @@
+from typing import List, Optional
 from spacy.tokens import Span, Token, SpanGroup, Doc
 
 class PhraseData:
@@ -14,35 +15,32 @@ class PhraseData:
 
 class PrepPhrase():
 
-    def __init__(self):
+    def __init__(self, doc:Doc):
         def is_prep(token): return token.text in PhraseData.PREP_LIST
         Token.set_extension("is_prep", getter=is_prep, force=True)
+        self._doc = doc
+        self.__prep_phrase = self._get_prep_phrase()
     
     @property
-    def prep_groups(self) -> SpanGroup:
-        return self._span_group
+    def prep_phrase(self) -> Optional[List[Span]]:
+        return self.__prep_phrase
+    
+    def _get_prep_phrase(self) -> Optional[List[Span]]:
+        """method to extract a noun including prep 
 
-    def register_prep_phrase(self, doc: Doc) -> Doc:
-        """
-        Add noun including prep to Spans Group
-        Parameters
-        ----------
-        doc : Doc
+        Args:
+            doc (Doc): spacy.tokens.Doc class
 
-        Returns
-        -------
-        doc : Doc
-        """
+        Returns:
+            Optional[List[Span]]: _description_
+        """        
         prep_noun = "prep_noun"
         spans = []
-        for token in doc:
+        for token in self._doc:
             subs = [sub for sub in token.subtree]
             if token.dep_ == "prep":
                 start = subs[0].i
                 end = subs[-1].i+1
-                span = Span(doc, start, end, label=prep_noun)
+                span = Span(self._doc, start, end, label=prep_noun)
                 spans.append(span)
-
-        self._span_group = SpanGroup(doc=doc, name=prep_noun, spans=spans, attrs={})
-        doc.spans[prep_noun] = self._span_group
-        return doc
+        return spans
