@@ -2,7 +2,7 @@ from sent_pattern.core.elements.elements import CustomElements, ElementOption, R
 from sent_pattern.core.elements.sub.phrase import PrepPhrase
 from sent_pattern.core.type import DepLemmaListType
 from ..elements import Adjective,Subject,RootObject,Verb
-
+from spacy.tokens import Doc
 class ElementsFactory:
 
     @classmethod
@@ -25,7 +25,7 @@ class ElementsFactory:
         return RootElements(subject, verb, adjective, rootobject)
     
     @classmethod
-    def make_custom_elements(cls, dep_list: DepLemmaListType,  opt:str = "all") -> "CustomElements":
+    def make_custom_elements(cls,doc:Doc, dep_list: DepLemmaListType,  opt:str = "all") -> "CustomElements":
         """_summary_
 
         Args:
@@ -41,5 +41,5 @@ class ElementsFactory:
         adjective = Adjective(dep_list)
         rootobject = RootObject(dep_list)
         options = ElementOption(option=opt)
-        custom_elements = CustomElements(subject, verb, adjective, rootobject, option=options)
+        custom_elements = CustomElements(doc, subject, verb, adjective, rootobject, option=options)
         return custom_elements

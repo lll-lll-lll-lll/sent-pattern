@@ -21,7 +21,8 @@ class RootElements:
         self.rootobject = rootobject
 
 
-class ElementOption(Enum):
+class ElementOption:
+    _all = "all"
     Prep = "prep"
     Relcl = "relcl"
     
@@ -38,22 +39,22 @@ class ElementOption(Enum):
         Returns:
             bool: whether the option is configurable or not
         """
-        
-        return option in cls._value2member_map_
+        opt_list = cls.option_list()
+        return option in opt_list
 
     @classmethod
-    def option_list(cls) -> str:
+    def option_list(cls) -> List[str]:
         """returns a list of what can be set as options
 
         Returns:
             str: list of options
         """
-        return ",".join([e.value for e in ElementOption])
+        return [cls.Prep, cls.Relcl, cls._all]
 
     def __str__(self) -> str:
         if type(self._option) is str:
             return self._option
-        return ",".join([e for e in self._option])
+        return " ".join([e for e in self._option])
 
 class CustomElements(RootElements):
     def __init__(self,
@@ -62,10 +63,10 @@ class CustomElements(RootElements):
             verb: Verb, 
             adjective: Adjective, 
             rootobject: RootObject, 
-            option: ElementOption = "all"):
+            option: ElementOption):
 
         super().__init__(subject, verb, adjective, rootobject)
-        self._option = self._is_valid_option(option)
+        self._option = self._is_valid_option(option.__str__())
         self._doc = doc
         self.__relcl = self._get_relcl()
         self.__prep = self._get_prep()
@@ -88,15 +89,15 @@ class CustomElements(RootElements):
             else:
                 raise ValueError
         except ValueError:
-            raise ValueError(f"invalid option. valid option: [{ElementOption.option_list()}]")
+            raise ValueError(f"invalid option. your option is {option} valid option: [{ElementOption.option_list()}]")
     
     @property
     def all(self):
-        return list(self.relcl, self.prep)
+        return [self.relcl, self.prep]
     
     @property
     def relcl(self) -> Optional["RelativeClause"]:
-        if self._option == "all" or self._option == ElementOption.Relcl.value:
+        if self._option == "all" or self._option == ElementOption.Relcl:
             return self.__relcl
         return
     
@@ -104,10 +105,14 @@ class CustomElements(RootElements):
     def prep(self) ->Optional["PrepPhrase"]:
         return self.__prep
     
-    def _get_relcl(self) -> RelativeClause:
+    def _get_relcl(self) -> Optional[RelativeClause]:
         relcl = RelativeClause(self._doc)
-        return relcl
+        if relcl.root:
+            return relcl
+        return 
     
     def _get_prep(self) -> Optional["PrepPhrase"]:
         prep = PrepPhrase(self._doc)
-        return prep
+        if prep.prep_phrase:
+            return prep
+        return
