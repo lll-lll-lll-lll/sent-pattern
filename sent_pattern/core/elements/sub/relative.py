@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 from spacy.tokens import Doc, Span
 
 
@@ -7,7 +7,15 @@ class RelativeClause():
         self._doc = doc
         self.root = self._get_relative(doc)
 
-    def _get_relative(self, doc: Doc) -> List[Span]:
+    def _get_relative(self, doc: Doc) -> Optional[List[Span]]:
+        """method to extract relational clauses from Doc class and return them as a list
+
+        Args:
+            doc (Doc): spacy.tokens.Doc class
+
+        Returns:
+            Optional[List[Span]]: return spacy.tokens.Span list
+        """        
         spans = []
         for token in doc:
             if token.dep_ == "relcl":

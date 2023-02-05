@@ -63,6 +63,14 @@ class Adjective(IRootElement):
         return ""
 
     def _get_span(self, root:AdjectiveRootType)->AdjectiveSpanType:
+        """method that returns a list of subtrees of the root of the argument
+
+        Args:
+            root (AdjectiveRootType): _description_
+
+        Returns:
+            AdjectiveSpanType:  Type[List[Token]] | Type[None]
+        """        
         if type(root) == str:
             return
         adje_list = [token for token in root.subtree]
