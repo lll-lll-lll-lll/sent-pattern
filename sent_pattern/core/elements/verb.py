@@ -3,7 +3,7 @@ from spacy.tokens import Token
 from sent_pattern.core.interface.Ielement import IRootElement
 
 
-class RootVerb(IRootElement):
+class RootVerb:
     def __init__(self, verb: Token):
         self.__root = verb
         if not verb:
@@ -17,7 +17,7 @@ class RootVerb(IRootElement):
         return self.root.text
 
 
-class Verb(IRootElement):
+class Verb:
     DEP = []
 
     def __init__(self, dep_list):
