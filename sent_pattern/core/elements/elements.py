@@ -107,7 +107,7 @@ class CustomElements(RootElements):
     
     def _get_relcl(self) -> Optional[RelativeClause]:
         relcl = RelativeClause(self._doc)
-        if relcl.root:
+        if relcl.relcl_section:
             return relcl
         return 
     
