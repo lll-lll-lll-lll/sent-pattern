@@ -32,7 +32,7 @@ class PrepPhrase():
             doc (Doc): spacy.tokens.Doc class
 
         Returns:
-            Optional[List[Span]]: _description_
+            Optional[List[Span]]: return a noun including prep 
         """        
         prep_noun = "prep_noun"
         spans = []
