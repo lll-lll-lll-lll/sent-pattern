@@ -1,8 +1,7 @@
 from collections import defaultdict
 from spacy.tokens import Doc
-from sent_pattern.core.elements.elements import RootElements
-from sent_pattern.core.factory.elements import ElementsFactory
-from sent_pattern.core.factory.pattern import SentencePatternDoc
+from sent_pattern.core.elements.elements import RootElements, make_root_elements
+from sent_pattern.core.elements.patterns import SentencePatternDoc
 from sent_pattern.core.type import DepLemmaListType
 
 
@@ -36,7 +35,7 @@ def create_elements(dep_list: DepLemmaListType) -> RootElements:
     elements: RootElements
         classes have subject, verb, adjective, and object
     """
-    elements = ElementsFactory.make_root_elements(
+    elements = make_root_elements(
         dep_list=dep_list)
     return elements
 

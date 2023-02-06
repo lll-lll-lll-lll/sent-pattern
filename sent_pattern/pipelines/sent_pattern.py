@@ -1,5 +1,5 @@
 from typing import List, Union
-from sent_pattern.core.factory.pattern import SentencePatternDoc
+from sent_pattern.core.elements.patterns import SentencePatternDoc
 from sent_pattern.core.interface.Ipattern import IBaseSentencePattern
 from sent_pattern.tags import create_dep_list, create_elements
 from spacy.tokens import Doc
