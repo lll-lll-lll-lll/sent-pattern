@@ -11,16 +11,6 @@ class SentencePatternDoc:
         self.elements = elements
 
     @property
-    def pattern_name(self) -> str:
-        """
-        Returns
-        -------
-        name: str
-            the class name string of one of the fifth sentence types
-        """
-        return self.type.__class__.__name__
-
-    @property
     def type(self) -> SentencePatternType: return self._classify_pattern_type()
 
     def _classify_pattern_type(self) -> SentencePatternType:
