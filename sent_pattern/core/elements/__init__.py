@@ -1,9 +1,9 @@
-"""
-値オブジェクトを持つディレクトリ
-"""
-
 from .adjective import Adjective as Adjective
 from .subject import Subject as Subject
 from .verb import Verb as Verb
 from .object import RootObject as RootObject
 from .elements import RootElements as RootElements
+from .elements import ElementOption as ElementOption
+from .elements import CustomElements as CustomElements
+from .elements import make_custom_elements as make_custom_elements
+from .elements import make_root_elements as make_root_elements
