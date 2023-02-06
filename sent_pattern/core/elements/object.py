@@ -32,6 +32,14 @@ class RootObject(IRootElement):
         return self._get_span(root)
     
     def span_str(self, spans: ObjectSpanType) -> Optional[Union[List[str],str]]:
+        """If the target word is included in the sentence, the tokens are concatenated into a string
+
+        Args:
+            spans (ObjectSpanType): tokens related to the target word token
+
+        Returns:
+            Optional[Union[List[str],str]]: argument spans converted to string
+        """        
         if len(spans) == 0:
             return
         elif len(spans) == 1:
@@ -41,6 +49,11 @@ class RootObject(IRootElement):
         return
 
     def _get_root(self) -> ObjectRootType:
+        """If the child token's dep of the verb in the sentence is included in the DEP list, return a list of the tokens
+
+        Returns:
+            ObjectRootType: List of tokens matched to DEP list
+        """        
         objects = []
         root_verb = self._dep_list["ROOT"][0]
         child = [child.dep_ for child in root_verb.children]
@@ -50,6 +63,14 @@ class RootObject(IRootElement):
         return objects
 
     def _get_span(self, root:ObjectRootType) ->ObjectSpanType:
+        """extract tokens related to the target word token
+
+        Args:
+            root (ObjectRootType): Token corresponding to sentence type "O" (ex. ThirdSentencePattern(SVO))
+
+        Returns:
+            ObjectSpanType: tokens related to the target word token
+        """        
         if len(root) == 0:
             return
         if len(root) == 1:
