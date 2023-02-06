@@ -25,11 +25,11 @@ def make_sentpattern(elements: RootElements) -> RootElements:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-                prog='main', # プログラム名
-                usage='Demonstration of argparser', # プログラムの利用方法
-                description='description', # 引数のヘルプの前に表示
-                epilog='end', # 引数のヘルプの後で表示
-                add_help=True, # -h/–help オプションの追加
+                prog='main', 
+                usage='Demonstration of argparser', 
+                description='description', 
+                epilog='end',
+                add_help=True,
                 )
     parser.add_argument('-e', choices=['prep', 'relcl', 'all'])
     args = parser.parse_args()
