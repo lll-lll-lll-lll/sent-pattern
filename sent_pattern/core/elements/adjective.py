@@ -48,10 +48,10 @@ class Adjective(IRootElement):
         return bool(self.root)
 
     def _get_root(self) -> AdjectiveRootType:
-        """
-        get root adjective
-        Return
-                adjctive(Token) or empty string(string)
+        """get element that are adjectives (c) of the sentence type
+
+        Returns:
+            AdjectiveRootType: returns a spacy.Token or an empty string representing the element
         """
         root_verb = self._dep_list["ROOT"][0]
         child = [child.dep_ for child in root_verb.children]

@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod
-from typing import List,Dict
+from typing import Any, List,Dict
 from spacy.tokens import Token
 from sent_pattern.core.elements import Subject,Verb
 
@@ -18,7 +18,12 @@ class IBaseSentencePattern(metaclass=ABCMeta):
     
     @property
     @abstractmethod
-    def spans(self) -> Dict[str, List[Token]]:
+    def spans(self) -> Dict[str, List[Any]]:
+        """combine the tokens associated with each element token of a sentence type into a single element
+
+        Returns:
+            Dict[str, List[Any]]: key: (character representing element tokens for each sentence type) value: ()
+        """        
         raise NotImplementedError()
     
     @property
